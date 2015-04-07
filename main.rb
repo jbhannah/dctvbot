@@ -4,6 +4,7 @@ Bundler.require
 # Require Plugins
 require_relative "plugins/quit"
 require_relative "plugins/help"
+require_relative "plugins/dctvapi"
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -27,7 +28,7 @@ bot = Cinch::Bot.new do
     }
 
     # Plugins to load
-    c.plugins.plugins = [Cinch::Quit, Cinch::Help]
+    c.plugins.plugins = [Cinch::Quit, Cinch::Help, Cinch::DctvApi]
   end
 
   trap "SIGINT" do
