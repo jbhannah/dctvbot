@@ -1,3 +1,5 @@
+require "bundler/setup"
+Bundler.require
 bot = Cinch::Bot.new do
   configure do |c|
     # Server Info
