@@ -1,5 +1,10 @@
 require "bundler/setup"
 Bundler.require
+
+# Require Plugins
+require_relative "plugins/quit"
+require_relative "plugins/help"
+
 bot = Cinch::Bot.new do
   configure do |c|
     # Server Info
@@ -11,6 +16,18 @@ bot = Cinch::Bot.new do
     c.user = "dctvbot"
     c.realname = "dctvbot"
     c.channels = ["#testinn"]
+
+    # Plugin Options
+
+    # Default prefix is the bot’s name
+    c.plugins.prefix = lambda{ |msg| Regexp.compile("^#{Regexp.escape(msg.bot.nick)}:?\s*") }
+
+    config.plugins.options[Cinch::Quit] = {
+      :op => true
+    }
+
+    # Plugins to load
+    c.plugins.plugins = [Cinch::Quit, Cinch::Help]
   end
 
   trap "SIGINT" do
