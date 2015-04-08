@@ -9,6 +9,16 @@ require_relative "plugins/notifier"
 require_relative "plugins/quit"
 require_relative "plugins/watcher"
 
+def spamcheck?
+  if @lastspam.nil? || @lastspam + 5.minutes < Time.new
+    @lastspam = Time.new
+    return false
+  else
+    bot.log("Too Soon", :info)
+    return true
+  end
+end
+
 bot = Cinch::Bot.new do
   configure do |c|
     # Server Info
@@ -31,19 +41,25 @@ bot = Cinch::Bot.new do
     }
 
     # Plugins to load
-    c.plugins.plugins = [Cinch::Quit, Cinch::Help, CleverBot, DctvApi, Notifier, Commands]
+    c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
   end
 
   on :message, /#boiled/ do |msg|
-    msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
+    unless spamcheck?
+      msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
+    end
   end
 
   on :message, /anthony\scarboni/i do |msg|
-    msg.reply("oooooOOOOOooooOOoo")
+    unless spamcheck?
+      msg.reply("oooooOOOOOooooOOoo")
+    end
   end
 
   on :message, /^preshow\?$/i do |msg|
-    msg.reply("#{msg.user.nick}: No.")
+    unless spamcheck?
+      msg.reply("#{msg.user.nick}: No.")
+    end
   end
 
   trap "SIGINT" do
