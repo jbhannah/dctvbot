@@ -44,7 +44,7 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
   end
 
-  on :message, /#boiled/ do |msg|
+  on :message, /#boiled/i do |msg|
     unless spamcheck?
       msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
     end
@@ -59,6 +59,12 @@ bot = Cinch::Bot.new do
   on :message, /^preshow\?$/i do |msg|
     unless spamcheck?
       msg.reply("#{msg.user.nick}: No.")
+    end
+  end
+
+  on :message, /pizza/i do |msg|
+    unless spamcheck?
+      msg.reply("pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     end
   end
 
