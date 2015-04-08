@@ -2,9 +2,10 @@ class Commands
   include Cinch::Plugin
 
   match /whoson/, method: :whoson
+  match /whatson/, method: :whoson
 
   set :help, <<-HELP
-cinch whoson
+cinch whoson|whatson
   I'll tell you what's currently streaming
   HELP
 
