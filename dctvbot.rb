@@ -34,6 +34,18 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
   end
 
+  on :message, /#boiled/ do |msg|
+    msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
+  end
+
+  on :message, /anthony\scarboni/i do |msg|
+    msg.reply("oooooOOOOOooooOOoo")
+  end
+
+  on :message, /^preshow\?$/i do |msg|
+    msg.reply("#{msg.user.nick}: No.")
+  end
+
   trap "SIGINT" do
     bot.log("Caught SIGINT, quitting...", :info)
     bot.quit
