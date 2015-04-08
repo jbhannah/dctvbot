@@ -19,7 +19,7 @@ bot = Cinch::Bot.new do
     c.nick = "dctvbot"
     c.user = "dctvbot"
     c.realname = "dctvbot"
-    c.channels = ["#testinn"]
+    c.channels = ["#chat"]
 
     # Plugin Options
 
@@ -31,7 +31,7 @@ bot = Cinch::Bot.new do
     }
 
     # Plugins to load
-    c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
+    c.plugins.plugins = [Cinch::Quit, Cinch::Help, CleverBot, DctvApi, Notifier, Commands]
   end
 
   on :message, /#boiled/ do |msg|

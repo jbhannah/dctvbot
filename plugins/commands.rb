@@ -7,18 +7,17 @@ include REXML
 class Commands
   include Cinch::Plugin
 
-  match /whoson/, method: :whoson
-  match /whatson/, method: :whoson
+  match /whatson/, method: :whatson
   match /whatsnext/, method: :whatsnext
 
   set :help, <<-HELP
-cinch whoson|whatson
+cinch whatson
   I'll tell you what's currently streaming
 cinch whatsnext
   I'll figure out what's coming up next and let you know
   HELP
 
-  def whoson(msg)
+  def whatson(msg)
     apiResult = DctvApi.getJson
     onCount = 0
     apiResult.each do |result|
