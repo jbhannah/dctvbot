@@ -6,7 +6,7 @@ class Watcher
   def start
     while true
       sleep 15
-      @bot.handlers.dispatch(:checkdctv, nil, @bot.channels[0])
+      @bot.handlers.dispatch(:checkdctv, nil, @bot)
     end
   end
 end

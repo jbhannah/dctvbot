@@ -3,16 +3,17 @@ class Notifier
 
   listen_to :checkdctv
 
-  def listen(m, outputChannel)
+  def listen(m, bot)
     statuses = DctvApi.getJson
 
     statuses.each do |stream|
-      if stream["Channel"] != "0" && stream["Alerts"] == "true"
-        Channel(outputChannel).send("#{stream["StreamName"]} is LIVE on Channel #{stream["Channel"]}")
-      elsif stream["Alerts"] == "true"
-        bot.log("#{stream["StreamName"]} is NOT live", :info)
-      else
-        bot.log("#{stream["StreamName"]} will NOT be alerted", :info)
+      id = Integer(stream["StreamID"])
+      if stream["Channel"] != "0" && stream["Alerts"] == "true" && !bot.announced.include?(id)
+        Channel(bot.channels[0]).send("#{stream["StreamName"]} is LIVE on Channel #{stream["Channel"]}")
+        bot.announced << id
+      elsif stream["Channel"] == "0" && bot.announced.include?(id)
+        bot.log("#{stream["StreamName"]} is no longer live", :info)
+        bot.announced.delete(id)
       end
     end
   end

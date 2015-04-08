@@ -1,9 +1,14 @@
 class Commands
   include Cinch::Plugin
 
-  match /whoson/, method: :whosOn
+  match /whoson/, method: :whoson
 
-  def whosOn(msg)
+  set :help, <<-HELP
+cinch whoson
+  I'll tell you what's currently streaming
+  HELP
+
+  def whoson(msg)
     apiResult = DctvApi.getJson
     onCount = 0
     apiResult.each do |result|

@@ -24,7 +24,7 @@ bot = Cinch::Bot.new do
     # Plugin Options
 
     # Prefix is the bot’s name
-    c.plugins.prefix = lambda{ |msg| Regexp.compile("^#{Regexp.escape(msg.bot.nick)}:?\s*") }
+    c.plugins.prefix = lambda{ |msg| Regexp.compile("^#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*") }
 
     config.plugins.options[Cinch::Quit] = {
       :op => true
@@ -42,6 +42,17 @@ bot = Cinch::Bot.new do
   trap "SIGTERM" do
     bot.log("Caught SIGTERM, quitting...", :info)
     bot.quit
+  end
+end
+
+class << bot
+  attr_accessor :announced
+end
+bot.announced = Array.new
+results = DctvApi.getJson
+results.each do |result|
+  unless Integer(result["Channel"]) == 0
+    bot.announced << Integer(result["StreamID"])
   end
 end
 
