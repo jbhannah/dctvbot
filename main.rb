@@ -2,9 +2,12 @@ require "bundler/setup"
 Bundler.require
 
 # Require Plugins
-require_relative "plugins/quit"
-require_relative "plugins/help"
+require_relative "plugins/commands"
 require_relative "plugins/dctvapi"
+require_relative "plugins/help"
+require_relative "plugins/notifier"
+require_relative "plugins/quit"
+require_relative "plugins/watcher"
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -20,7 +23,7 @@ bot = Cinch::Bot.new do
 
     # Plugin Options
 
-    # Default prefix is the bot’s name
+    # Prefix is the bot’s name
     c.plugins.prefix = lambda{ |msg| Regexp.compile("^#{Regexp.escape(msg.bot.nick)}:?\s*") }
 
     config.plugins.options[Cinch::Quit] = {
@@ -28,7 +31,7 @@ bot = Cinch::Bot.new do
     }
 
     # Plugins to load
-    c.plugins.plugins = [Cinch::Quit, Cinch::Help, Cinch::DctvApi]
+    c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
   end
 
   trap "SIGINT" do
@@ -42,4 +45,5 @@ bot = Cinch::Bot.new do
   end
 end
 
+Thread.new { Watcher.new(bot).start }
 bot.start
