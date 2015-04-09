@@ -9,14 +9,14 @@ module Cinch
       include Cinch::Plugin
 
       set :help, <<-HELP
-cinch whatson
-  I'll tell you what's currently streaming
-cinch whatsnext
-  I'll tell you what will be on next
-cinch schedule
-  I'll tell you the shows that will be on in the next 48 hours
+!whatson
+  What's currently streaming
+!whatsnext
+  What will be on next
+!schedule
+  Scheduled shows that will be on in the next 48 hours
   HELP
-      
+
       def timeIsLinkEastern(time)
         time = time.in_time_zone('US/Eastern')
         return "http://time.is/#{time.strftime("%H%M")}_ET"
