@@ -1,11 +1,16 @@
-require 'net/http'
 require 'bundler/setup'
 Bundler.require
+
+require 'net/http'
+require 'rexml/document'
+require 'active_support/time'
 
 # Require Plugins
 require_relative 'cinch/plugins/commands'
 require_relative 'cinch/plugins/help'
 require_relative 'cinch/plugins/notifier'
+
+include REXML
 
 class DctvAPI
   def self.getJson
@@ -39,6 +44,41 @@ class DctvAPI
   end
 
   def self.calendarEntries(numEntries)
+    calendarTz = "MDT"
+    uri = URI.parse("http://www.google.com/calendar/feeds/a5jeb9t5etasrbl6dt5htkv4to%40group.calendar.google.com/public/basic")
+    params = {
+      orderby: "starttime",
+      singleevents:"true",
+      sortorder: "ascending",
+      futureevents: "true",
+      'max-results' => "#{numEntries}"
+    }
+    uri.query = URI.encode_www_form(params)
+    response = Net::HTTP.get_response(uri)
+    xml = Document.new(response.body)
+    response = Array.new
+    xml.elements.each("feed/entry") do |entry|
+      calItem = Hash.new
+      entry.elements.each("title") do |title|
+        calItem["title"] = title.text
+      end
+      entry.elements.each("content") do |content|
+        content.text =~ /when:\s(.*)\sto/i
+        calItem["time"] = Time.parse("#{$1} #{calendarTz}")
+      end
+      response << calItem
+    end
+    return response
+  end
+
+  def self.timeIsLinkEastern(time)
+    time = time.in_time_zone('US/Eastern')
+    return "http://time.is/#{time.strftime("%H%M")}_ET"
+  end
+
+  def self.timeIsLinkEasternDay(time)
+    time = time.in_time_zone('US/Eastern')
+    return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y")}_ET"
   end
 end
 

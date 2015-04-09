@@ -10,12 +10,15 @@ module Cinch
 
       match /whatson/, method: :whatson
       match /whatsnext/, method: :whatsnext
+      match /schedule/, method: :schedule
 
       set :help, <<-HELP
 cinch whatson
   I'll tell you what's currently streaming
 cinch whatsnext
   I'll figure out what's coming up next and let you know
+cinch schedule
+  I'll tell you the next 5 shows on the schedule
   HELP
 
       def whatson(msg)
@@ -33,30 +36,25 @@ cinch whatsnext
       end
 
       def whatsnext(msg)
+        entries = DctvAPI.calendarEntries(1)
         reply = "Next Scheduled Show: "
-        uri = URI.parse("http://www.google.com/calendar/feeds/a5jeb9t5etasrbl6dt5htkv4to%40group.calendar.google.com/public/basic")
-        params = {
-          orderby: "starttime",
-          singleevents:"true",
-          sortorder: "ascending",
-          futureevents: "true",
-          'max-results' => "1"
-        }
-        uri.query = URI.encode_www_form(params)
-        response = Net::HTTP.get_response(uri)
-        xml = Document.new(response.body)
-        xml.elements.each("feed/entry") do |entry|
-          entry.elements.each("title") do |title|
-            reply += " #{title.text}"
-          end
-          entry.elements.each("content") do |content|
-            content.text =~ /when:\s(.*)\sto/i
-            time = Time.parse("#{$1} MDT")
-            time = time.in_time_zone('US/Eastern')
-            reply += " - http://time.is/#{time.strftime("%H%M")}_ET"
-          end
+        entries.each do |entry|
+          reply += entry["title"]
+          reply += " - "
+          reply += DctvAPI.timeIsLinkEastern(entry["time"])
         end
         msg.reply(reply)
+      end
+
+      def schedule(msg)
+        entries = DctvAPI.calendarEntries(5)
+        msg.reply ("Here are the next 5 scheduled shows:")
+        entries.each do |entry|
+          reply = entry["title"]
+          reply += " - "
+          reply += DctvAPI.timeIsLinkEasternDay(entry["time"])
+          msg.reply(reply)
+        end
       end
     end
   end
