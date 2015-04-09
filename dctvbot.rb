@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'bundler/setup'
 Bundler.require
 
@@ -147,6 +149,12 @@ bot = Cinch::Bot.new do
   on :message, /pizza/i do |msg|
     unless spamcheck?
       msg.reply("pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    end
+  end
+
+  on :message, /tableflip/i do |msg|
+    unless spamcheck?
+      msg.reply("(╯°□°)╯︵ ┻━┻")
     end
   end
 

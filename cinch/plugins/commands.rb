@@ -8,9 +8,9 @@ module Cinch
     class Commands
       include Cinch::Plugin
 
-      match /whatson/, method: :whatson
-      match /whatsnext/, method: :whatsnext
-      match /schedule/, method: :schedule
+
+
+
 
       set :help, <<-HELP
 cinch whatson
@@ -21,6 +21,7 @@ cinch schedule
   I'll tell you the shows that will be on in the next 48 hours
   HELP
 
+      match /whatson/, method: :whatson
       def whatson(msg)
         apiResult = DctvAPI.getJson
         onCount = 0
@@ -35,6 +36,7 @@ cinch schedule
         end
       end
 
+      match /whatsnext/, method: :whatsnext
       def whatsnext(msg)
         entries = DctvAPI.calendarEntries(1)
         reply = "Next Scheduled Show: "
@@ -46,6 +48,7 @@ cinch schedule
         msg.reply(reply)
       end
 
+      match /schedule/, method: :schedule
       def schedule(msg)
         entries = DctvAPI.calendarEntries(10)
         msg.reply ("Here are the scheduled shows for the next 48 hours:")
