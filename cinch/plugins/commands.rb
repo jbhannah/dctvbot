@@ -12,11 +12,11 @@ module Cinch
       match /whatsnext/, method: :whatsnext
 
       set :help, <<-HELP
-    cinch whatson
-      I'll tell you what's currently streaming
-    cinch whatsnext
-      I'll figure out what's coming up next and let you know
-      HELP
+cinch whatson
+  I'll tell you what's currently streaming
+cinch whatsnext
+  I'll figure out what's coming up next and let you know
+  HELP
 
       def whatson(msg)
         apiResult = DctvAPI.getJson

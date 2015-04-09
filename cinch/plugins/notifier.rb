@@ -5,6 +5,11 @@ module Cinch
 
       listen_to :checkdctv
 
+      set :help, <<-HELP
+no commands
+  This plugins is for monitoring the diamondclub.tv api and alerting live streams accordingly
+  HELP
+
       def listen(m, bot)
         statuses = DctvAPI.getJson
 

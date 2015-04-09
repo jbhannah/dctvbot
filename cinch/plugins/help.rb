@@ -105,15 +105,14 @@ module Cinch
       match /help(.*)/i, :react_on => :channel, :method => :channelhelp
       match /help(.*)/i, :use_prefix => false, :react_on => :private
 
-      set :help, <<-EOF
-    /msg cinch help
-      Post a short introduction and list available plugins.
-    /msg cinch help <plugin>
-      List all commands available in a plugin.
-    /msg cinch help search <query>
-      Search all plugin’s commands and list all commands containing
-      <query>.
-      EOF
+      set :help, <<-HELP
+/msg cinch help
+  Post a short introduction and list available plugins.
+/msg cinch help <plugin>
+  List all commands available in a plugin.
+/msg cinch help search <query>
+  Search all plugin’s commands and list all commands containing <query>.
+  HELP
 
       def execute(msg, query)
         query = query.strip.downcase
