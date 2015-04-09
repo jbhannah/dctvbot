@@ -7,7 +7,7 @@ module Cinch
 
       set :help, <<-HELP
 no commands
-  This plugins is for monitoring the diamondclub.tv api and alerting live streams accordingly
+  This plugin is for monitoring the diamondclub.tv api and alerting live streams accordingly
   HELP
 
       def listen(m, bot)

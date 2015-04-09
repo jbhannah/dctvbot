@@ -11,6 +11,7 @@ require 'active_support/time'
 require_relative 'cinch/plugins/commands'
 require_relative 'cinch/plugins/help'
 require_relative 'cinch/plugins/notifier'
+require_relative 'cinch/plugins/cleverbot'
 
 include REXML
 
@@ -103,10 +104,10 @@ bot = Cinch::Bot.new do
     c.port    = 6667
 
     # Bot User Info
-    c.nick = "dctvbot"
-    c.user = "dctvbot"
-    c.realname = "dctvbot"
-    c.channels = ["#chat"]
+    c.nick = "dctvbot1"
+    c.user = "dctvbot1"
+    c.realname = "dctvbot1"
+    c.channels = ["#testinn"]
 
     # Prefix is the bot’s name
     c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
@@ -114,7 +115,8 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [
       Cinch::Plugins::Help,
       Cinch::Plugins::Notifier,
-      Cinch::Plugins::Commands
+      Cinch::Plugins::Commands,
+      Cinch::Plugins::CleverBot
     ]
   end
 

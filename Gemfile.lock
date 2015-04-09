@@ -8,9 +8,15 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     cinch (2.2.5)
+    cleverbot (0.2.0)
+      httparty (>= 0.8.1, < 1.0)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.2)
     minitest (5.5.1)
+    multi_xml (0.5.5)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -21,4 +27,5 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   cinch
+  cleverbot
   json
