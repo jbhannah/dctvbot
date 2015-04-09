@@ -1,5 +1,5 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "cinch"
-gem "json"
-gem "activesupport"
+gem 'cinch'
+gem 'json'
+gem 'activesupport'

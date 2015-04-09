@@ -1,20 +1,62 @@
-require "bundler/setup"
+require 'net/http'
+require 'bundler/setup'
 Bundler.require
 
 # Require Plugins
-require_relative "plugins/commands"
-require_relative "plugins/dctvapi"
-require_relative "plugins/help"
-require_relative "plugins/notifier"
-require_relative "plugins/quit"
-require_relative "plugins/watcher"
+require_relative 'cinch/plugins/commands'
+require_relative 'cinch/plugins/help'
+require_relative 'cinch/plugins/notifier'
+
+class DctvAPI
+  def self.getJson
+    # Returns parsed JSON from dctv api info
+    url = "http://diamondclub.tv/api/status.php"
+    jsonString = "["
+    response = Net::HTTP.get_response(URI.parse(url))
+    entries = response.body.split(/\n/)
+    i = 0
+    entries.each do |entry|
+      entry = entry.gsub(/\{|\}/, "")
+      items = entry.split(";")
+      jsonString += "{"
+      j = 0
+      items.each do |item|
+        item = item.split(":");
+        jsonString += "\"#{item[0]}\":\"#{item[1]}\""
+        j += 1
+        unless j == items.length
+          jsonString += ","
+        end
+      end
+      jsonString += "}"
+      i += 1
+      unless i == entries.length
+        jsonString +=","
+      end
+    end
+    jsonString += "]"
+    return JSON.parse(jsonString)
+  end
+end
+
+class Watcher
+  def initialize(bot)
+    @bot = bot
+  end
+
+  def start
+    while true
+      sleep 15
+      @bot.handlers.dispatch(:checkdctv, nil, @bot)
+    end
+  end
+end
 
 def spamcheck?
   if @lastspam.nil? || @lastspam + 5.minutes < Time.new
     @lastspam = Time.new
     return false
   else
-    bot.log("Too Soon", :info)
     return true
   end
 end
@@ -31,17 +73,14 @@ bot = Cinch::Bot.new do
     c.realname = "dctvbot"
     c.channels = ["#chat"]
 
-    # Plugin Options
-
     # Prefix is the bot’s name
-    c.plugins.prefix = lambda{ |msg| Regexp.compile("^#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*") }
+    c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
 
-    config.plugins.options[Cinch::Quit] = {
-      :op => true
-    }
-
-    # Plugins to load
-    c.plugins.plugins = [Cinch::Quit, Cinch::Help, DctvApi, Notifier, Commands]
+    c.plugins.plugins = [
+      Cinch::Plugins::Help,
+      Cinch::Plugins::Notifier,
+      Cinch::Plugins::Commands
+    ]
   end
 
   on :message, /#boiled/i do |msg|
@@ -52,13 +91,13 @@ bot = Cinch::Bot.new do
 
   on :message, /anthony\scarboni/i do |msg|
     unless spamcheck?
-      msg.reply("oooooOOOOOooooOOoo")
+      msg.reply("oooooOOOOOooooOOooo")
     end
   end
 
   on :message, /^preshow\?$/i do |msg|
     unless spamcheck?
-      msg.reply("#{msg.user.nick}: No.")
+      msg.reply("No.", true)
     end
   end
 
@@ -83,7 +122,7 @@ class << bot
   attr_accessor :announced
 end
 bot.announced = Array.new
-results = DctvApi.getJson
+results = DctvAPI.getJson
 results.each do |result|
   unless Integer(result["Channel"]) == 0
     bot.announced << Integer(result["StreamID"])
