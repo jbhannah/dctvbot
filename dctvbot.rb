@@ -12,6 +12,7 @@ require_relative 'cinch/plugins/commands'
 require_relative 'cinch/plugins/help'
 require_relative 'cinch/plugins/notifier'
 require_relative 'cinch/plugins/cleverbot'
+require_relative 'cinch/plugins/twss'
 
 include REXML
 
@@ -116,7 +117,8 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Help,
       Cinch::Plugins::Notifier,
       Cinch::Plugins::Commands,
-      Cinch::Plugins::CleverBot
+      Cinch::Plugins::CleverBot,
+      Cinch::Plugins::ThatsWhatSheSaid
     ]
   end
 
