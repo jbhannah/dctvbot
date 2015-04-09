@@ -11,7 +11,7 @@ no commands
   HELP
 
       def twss(m, *args)
-        TWSS.threshold = 8.5
+        TWSS.threshold = 10.0
         if TWSS(m.message)
           m.reply "#{m.user.nick}: That's what she said!"
         end

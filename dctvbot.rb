@@ -12,7 +12,7 @@ require_relative 'cinch/plugins/commands'
 require_relative 'cinch/plugins/help'
 require_relative 'cinch/plugins/notifier'
 require_relative 'cinch/plugins/cleverbot'
-require_relative 'cinch/plugins/twss'
+# require_relative 'cinch/plugins/twss'
 
 include REXML
 
@@ -117,34 +117,34 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Help,
       Cinch::Plugins::Notifier,
       Cinch::Plugins::Commands,
-      Cinch::Plugins::CleverBot,
-      Cinch::Plugins::ThatsWhatSheSaid
+      Cinch::Plugins::CleverBot
+      #Cinch::Plugins::ThatsWhatSheSaid
     ]
   end
 
-  on :message, /#boiled/i do |msg|
-    unless spamcheck?
-      msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
-    end
-  end
-
-  on :message, /anthony\scarboni/i do |msg|
-    unless spamcheck?
-      msg.reply("oooooOOOOOooooOOooo")
-    end
-  end
+  # on :message, /#boiled/i do |msg|
+  #   unless spamcheck?
+  #     msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
+  #   end
+  # end
+  #
+  # on :message, /anthony\scarboni/i do |msg|
+  #   unless spamcheck?
+  #     msg.reply("oooooOOOOOooooOOooo")
+  #   end
+  # end
 
   on :message, /^preshow\?$/i do |msg|
     unless spamcheck?
       msg.reply("No.", true)
     end
   end
-
-  on :message, /pizza/i do |msg|
-    unless spamcheck?
-      msg.reply("pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    end
-  end
+  
+  # on :message, /pizza/i do |msg|
+  #   unless spamcheck?
+  #     msg.reply("pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  #   end
+  # end
 
   on :message, /tableflip/i do |msg|
     unless spamcheck?
