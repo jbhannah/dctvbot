@@ -148,6 +148,12 @@ bot = Cinch::Bot.new do
     end
   end
 
+  on :message, /tumbleweed/i do |msg|
+    unless spamcheck?
+      msg.reply("~...~...¤")
+    end
+  end
+
   trap "SIGINT" do
     bot.log("Caught SIGINT, quitting...", :info)
     bot.quit
