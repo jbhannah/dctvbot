@@ -110,7 +110,7 @@ bot = Cinch::Bot.new do
     c.channels = ["#testinn"]
 
     # Prefix is the bot’s name
-    c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
+    # c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
 
     c.plugins.plugins = [
       Cinch::Plugins::Help,
