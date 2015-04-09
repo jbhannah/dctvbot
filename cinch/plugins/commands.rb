@@ -16,9 +16,9 @@ module Cinch
 cinch whatson
   I'll tell you what's currently streaming
 cinch whatsnext
-  I'll figure out what's coming up next and let you know
+  I'll tell you what will be on next
 cinch schedule
-  I'll tell you the next 5 shows on the schedule
+  I'll tell you the shows that will be on in the next 48 hours
   HELP
 
       def whatson(msg)
@@ -47,13 +47,15 @@ cinch schedule
       end
 
       def schedule(msg)
-        entries = DctvAPI.calendarEntries(5)
-        msg.reply ("Here are the next 5 scheduled shows:")
+        entries = DctvAPI.calendarEntries(10)
+        msg.reply ("Here are the scheduled shows for the next 48 hours:")
         entries.each do |entry|
-          reply = entry["title"]
-          reply += " - "
-          reply += DctvAPI.timeIsLinkEasternDay(entry["time"])
-          msg.reply(reply)
+          if entry["time"] - 48.hours < Time.new
+            reply = entry["title"]
+            reply += " - "
+            reply += DctvAPI.timeIsLinkEasternDay(entry["time"])
+            msg.reply(reply)
+          end
         end
       end
     end
