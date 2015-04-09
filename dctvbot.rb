@@ -37,6 +37,9 @@ class DctvAPI
     jsonString += "]"
     return JSON.parse(jsonString)
   end
+
+  def self.calendarEntries(numEntries)
+  end
 end
 
 class Watcher
