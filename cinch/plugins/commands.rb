@@ -8,10 +8,6 @@ module Cinch
     class Commands
       include Cinch::Plugin
 
-
-
-
-
       set :help, <<-HELP
 cinch whatson
   I'll tell you what's currently streaming
@@ -20,6 +16,16 @@ cinch whatsnext
 cinch schedule
   I'll tell you the shows that will be on in the next 48 hours
   HELP
+      
+      def timeIsLinkEastern(time)
+        time = time.in_time_zone('US/Eastern')
+        return "http://time.is/#{time.strftime("%H%M")}_ET"
+      end
+
+      def timeIsLinkEasternDay(time)
+        time = time.in_time_zone('US/Eastern')
+        return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y")}_ET"
+      end
 
       match /whatson/, method: :whatson
       def whatson(msg)
@@ -43,7 +49,7 @@ cinch schedule
         entries.each do |entry|
           reply += entry["title"]
           reply += " - "
-          reply += DctvAPI.timeIsLinkEastern(entry["time"])
+          reply += timeIsLinkEastern(entry["time"])
         end
         msg.reply(reply)
       end
@@ -56,7 +62,7 @@ cinch schedule
           if entry["time"] - 48.hours < Time.new
             reply = entry["title"]
             reply += " - "
-            reply += DctvAPI.timeIsLinkEasternDay(entry["time"])
+            reply += timeIsLinkEasternDay(entry["time"])
             msg.reply(reply)
           end
         end

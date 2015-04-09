@@ -72,16 +72,6 @@ class DctvAPI
     end
     return response
   end
-
-  def self.timeIsLinkEastern(time)
-    time = time.in_time_zone('US/Eastern')
-    return "http://time.is/#{time.strftime("%H%M")}_ET"
-  end
-
-  def self.timeIsLinkEasternDay(time)
-    time = time.in_time_zone('US/Eastern')
-    return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y")}_ET"
-  end
 end
 
 class Watcher
