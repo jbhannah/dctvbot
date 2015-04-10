@@ -17,8 +17,8 @@ module Cinch
   What will be on next
 !schedule
   Scheduled shows that will be on in the next 48 hours
-!flip
-  Voiced or higher only.. Prints tableflip characters
+!flip [word]
+  Voiced or higher only. Prints tableflip characters or uses tableflip emoji with optional word
 !tumbleweed
   Voiced or higher only. Prints tumbleweed characters
 !boil
