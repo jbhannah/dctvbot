@@ -77,13 +77,13 @@ module Cinch
       match /flip$/, method: :flip
       match /flip\s*(.+)/, method: :flip
       def flip(msg, prefix=nil, word=nil)
-        #if msg.channel && powercheck(msg.channel, msg.user)
+        if msg.channel && powercheck(msg.channel, msg.user)
           if word.nil? || word.empty?
             msg.reply("(╯°□°)╯︵ ┻━┻")
           else
             msg.reply("(╯°□°)╯︵ #{flipString(word)}")
           end
-        #end
+        end
       end
 
       match /tumbleweed/, method: :tumbleweed
