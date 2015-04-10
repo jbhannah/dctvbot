@@ -104,7 +104,7 @@ module Cinch
       end
 
       def powercheck(channel, user)
-        return false unless channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
+        return false unless ["t2t2"].include?(user.nick) || channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
         return true
       end
 
