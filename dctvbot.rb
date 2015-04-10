@@ -109,8 +109,8 @@ bot = Cinch::Bot.new do
     c.realname = "dctvbot"
     c.channels = ["#chat"]
 
-    # Prefix is the bot’s name
-    # c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
+    # Prefix is the bot’s name or !
+    c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
 
     c.plugins.options = {
       Cinch::Plugins::CleverBotRedux => {
