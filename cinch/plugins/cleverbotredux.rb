@@ -73,9 +73,10 @@ module Cinch
 		  end
 
 		  def execute(m, message)
-				return if [ "whatson", "whatsnext", "schedule", "help", "flip",
-										"tumbleweed", "boil" ].include? message
 		    return unless @enabled
+				return if [ "whatson", "whatsnext", "schedule", "help", "flip",
+										"tumbleweed", "boil", "disablechatter", "enablechatter",
+										"globaldisable", "globalenable", "chatterhelp" ].include? message
 		    if @disabledChannels.include?(m.channel)
 		      return
 		    else
