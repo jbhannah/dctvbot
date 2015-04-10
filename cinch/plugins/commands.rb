@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rexml/document'
 require 'active_support/time'
 
@@ -25,6 +27,11 @@ module Cinch
       def timeIsLinkEasternDay(time)
         time = time.in_time_zone('US/Eastern')
         return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y")}_ET"
+      end
+
+      def powercheck(channel, user)
+        return false unless channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
+        return true
       end
 
       match /whatson/, method: :whatson
@@ -65,6 +72,27 @@ module Cinch
             reply += timeIsLinkEasternDay(entry["time"])
             msg.reply(reply)
           end
+        end
+      end
+
+      match /boil/i, method: :boil
+      def boil(msg)
+        if msg.channel && powercheck(msg.channel, msg.user)
+          msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
+        end
+      end
+
+      match /flip/i, method: :tableflip
+      def tableflip(msg)
+        if msg.channel && powercheck(msg.channel, msg.user)
+          msg.reply("(╯°□°)╯︵ ┻━┻")
+        end
+      end
+
+      match /tumbleweed/i, method: :tumbleweed
+      def tumbleweed(msg)
+        if msg.channel && powercheck(msg.channel, msg.user)
+          msg.reply("~...~...¤")
         end
       end
     end

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'bundler/setup'
 Bundler.require
 
@@ -8,11 +6,10 @@ require 'rexml/document'
 require 'active_support/time'
 
 # Require Plugins
+require_relative 'cinch/plugins/cleverbotredux'
 require_relative 'cinch/plugins/commands'
 require_relative 'cinch/plugins/help'
 require_relative 'cinch/plugins/notifier'
-require_relative 'cinch/plugins/cleverbot'
-# require_relative 'cinch/plugins/twss'
 
 include REXML
 
@@ -105,56 +102,32 @@ bot = Cinch::Bot.new do
     c.port    = 6667
 
     # Bot User Info
-    c.nick = "dctvbot"
-    c.user = "dctvbot"
-    c.realname = "dctvbot"
-    c.channels = ["#chat"]
+    c.nick = "dctvbot1"
+    c.user = "dctvbot1"
+    c.realname = "dctvbot1"
+    c.channels = ["#testinn"]
 
     # Prefix is the bot’s name
     # c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}(?:,|:)?\s*)") }
+
+    c.plugins.options = {
+      Cinch::Plugins::CleverBotRedux => {
+        :pesternetwork => false,
+        :defaultnick => c.nick
+      }
+    }
 
     c.plugins.plugins = [
       Cinch::Plugins::Help,
       Cinch::Plugins::Notifier,
       Cinch::Plugins::Commands,
-      Cinch::Plugins::CleverBot
-      #Cinch::Plugins::ThatsWhatSheSaid
+      Cinch::Plugins::CleverBotRedux
     ]
   end
-
-  # on :message, /#boiled/i do |msg|
-  #   unless spamcheck?
-  #     msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
-  #   end
-  # end
-  #
-  # on :message, /anthony\scarboni/i do |msg|
-  #   unless spamcheck?
-  #     msg.reply("oooooOOOOOooooOOooo")
-  #   end
-  # end
 
   on :message, /^preshow\?$/i do |msg|
     unless spamcheck?
       msg.reply("No.", true)
-    end
-  end
-  
-  # on :message, /pizza/i do |msg|
-  #   unless spamcheck?
-  #     msg.reply("pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-  #   end
-  # end
-
-  on :message, /tableflip/i do |msg|
-    unless spamcheck?
-      msg.reply("(╯°□°)╯︵ ┻━┻")
-    end
-  end
-
-  on :message, /tumbleweed/i do |msg|
-    unless spamcheck?
-      msg.reply("~...~...¤")
     end
   end
 
