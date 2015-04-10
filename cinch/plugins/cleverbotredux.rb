@@ -74,6 +74,7 @@ module Cinch
 
 		  def execute(m, message)
 		    return unless @enabled
+				return if /flip (.+)/i =~ message
 				return if [ "whatson", "whatsnext", "schedule", "help", "flip",
 										"tumbleweed", "boil", "disablechatter", "enablechatter",
 										"globaldisable", "globalenable", "chatterhelp" ].include? message
