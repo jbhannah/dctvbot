@@ -1,7 +1,25 @@
 #dctvbot
-A simple IRC bot for chatrealm, built using Cinch
+A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)
 
-### Commands
-!whatson - Display what is currently streaming live on dctv  
-!whatsnext - Display the next scheduled show  
-!schedule - Display the schedueld shows for the next 48 hours
+## diamondclub.tv commands
+`!whatson` - Display what is currently streaming live on dctv  
+`!whatsnext` - Display the next scheduled show  
+`!schedule` - Display the schedueld shows for the next 48 hours
+
+## Help commands
+`!help` or `/msg dctvbot help` - Post a short introduction and list available plugins.  
+`/msg dctvbot help <plugin>` - List all commands available in a plugin.  
+`/msg dctvbot help search <query>` - Search all plugin’s commands and list all commands containing <query>.
+
+## Random fun commands
+**Restricted to users with voice or higher.**  
+`!flip [word]` - Prints tableflip emoji, when word is supplied, the table is replaced wiht a fliped version of the word  
+`!tumbleweed` -  Prints tumbleweed characters  
+`!boil` or `#boiled` - You got boiled. #boiled may be used mid-sentance.  
+
+## Cleverbot commands
+**Restricted to users with voice or higher.**  
+`!disablechatter` - Disables the bot's CleverBot interface.  
+`!enablechatter` - Re-enables the bot's CleverBot interface.  
+`!globaldisable` - Globally disables the CleverBot interface. This command can only be used by specified users (currently set to channel ops).  
+`!globalenable` - Globally re-enables the interface. This command contains the same permissions as globaldisable. NOTE: This will not reset any restriction that a channel operator has imposed on the bot with the previous commands.
