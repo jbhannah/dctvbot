@@ -18,11 +18,11 @@ module Cinch
 !schedule
   Scheduled shows that will be on in the next 48 hours
 !flip [word]
-  Voiced or higher only. Prints tableflip characters or uses tableflip emoji with optional word
+  Voiced or higher only. Prints tableflip emoji, when word is supplied, the table is replaced wiht a fliped version of the word
 !tumbleweed
   Voiced or higher only. Prints tumbleweed characters
 !boil
-  Voiced or higher only. boiled.
+  Voiced or higher only. You got boiled. #boiled may be used mid-sentance.
   HELP
 
       match /whatson/, method: :whatson
