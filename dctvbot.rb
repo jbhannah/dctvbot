@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'bundler/setup'
 Bundler.require
 
@@ -126,9 +128,7 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /^preshow\?$/i do |msg|
-    unless spamcheck?
-      msg.reply("No.", true)
-    end
+    msg.reply("No.", true)
   end
 
   trap "SIGINT" do

@@ -82,6 +82,7 @@ module Cinch
       end
 
       match /boil/i, method: :boil
+      match /#boiled/i, use_prefix: false, method: :boil
       def boil(msg)
         if msg.channel && powercheck(msg.channel, msg.user)
           msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
