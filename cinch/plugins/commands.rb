@@ -76,8 +76,10 @@ module Cinch
 
       match /flip (.+)/i, method: :flipnick
       def flipnick(msg, prefix, word)
-        flipword = flipString(word)
-        msg.reply("(╯°□°)╯︵ #{flipword}")
+        if msg.channel && powercheck(msg.channel, msg.user)
+          flipword = flipString(word)
+          msg.reply("(╯°□°)╯︵ #{flipword}")
+        end
       end
 
       match /flip/i, method: :flip
