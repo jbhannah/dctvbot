@@ -66,30 +66,27 @@ module Cinch
         end
       end
 
-      match /boil/i, method: :boil
-      match /#boiled/i, use_prefix: false, method: :boil
+      match /boil/, method: :boil
+      match /#boiled/, use_prefix: false, method: :boil
       def boil(msg)
         if msg.channel && powercheck(msg.channel, msg.user)
           msg.reply("\u0002\x0300,04 BBBBBOOOOOIIILLLED!! ")
         end
       end
 
-      match /flip (.+)/i, method: :flipnick
-      def flipnick(msg, prefix, word)
-        if msg.channel && powercheck(msg.channel, msg.user)
-          flipword = flipString(word)
-          msg.reply("(╯°□°)╯︵ #{flipword}")
-        end
+      match /flip$/, method: :flip
+      match /flip\s*(.+)/, method: :flip
+      def flip(msg, prefix=nil, word=nil)
+        #if msg.channel && powercheck(msg.channel, msg.user)
+          if word.nil? || word.empty?
+            msg.reply("(╯°□°)╯︵ ┻━┻")
+          else
+            msg.reply("(╯°□°)╯︵ #{flipString(word)}")
+          end
+        #end
       end
 
-      match /flip/i, method: :flip
-      def flip(msg)
-        if msg.channel && powercheck(msg.channel, msg.user)
-          msg.reply("(╯°□°)╯︵ ┻━┻")
-        end
-      end
-
-      match /tumbleweed/i, method: :tumbleweed
+      match /tumbleweed/, method: :tumbleweed
       def tumbleweed(msg)
         if msg.channel && powercheck(msg.channel, msg.user)
           msg.reply("~...~...¤")
