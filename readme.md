@@ -13,7 +13,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 
 ## Random fun commands
 **Restricted to users with voice or higher.**  
-`!flip [word]` - Prints tableflip emoji, when word is supplied, the table is replaced wiht a fliped version of the word  
+`!flip [word]` - Prints tableflip emoji, when [word] is supplied, the table is replaced with a flipped version [word]  
 `!tumbleweed` -  Prints tumbleweed characters  
 `!boil` or `#boiled` - You got boiled. #boiled may be used mid-sentance.  
 
