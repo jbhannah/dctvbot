@@ -104,10 +104,10 @@ bot = Cinch::Bot.new do
     c.port    = 6667
 
     # Bot User Info
-    c.nick = "dctvbot1"
-    c.user = "dctvbot1"
-    c.realname = "dctvbot1"
-    c.channels = ["#testinn"]
+    c.nick = "dctvbot"
+    c.user = "dctvbot"
+    c.realname = "dctvbot"
+    c.channels = ["#chat"]
 
     # Prefix is the bot’s name or !
     c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
