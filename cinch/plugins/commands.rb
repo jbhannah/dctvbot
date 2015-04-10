@@ -17,6 +17,12 @@ module Cinch
   What will be on next
 !schedule
   Scheduled shows that will be on in the next 48 hours
+!flip
+  Voiced or higher only.. Prints tableflip characters
+!tumbleweed
+  Voiced or higher only. Prints tumbleweed characters
+!boil
+  Voiced or higher only. boiled.
   HELP
 
       def timeIsLinkEastern(time)
