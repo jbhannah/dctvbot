@@ -104,7 +104,10 @@ module Cinch
       end
 
       def powercheck(channel, user)
-        return false unless ["t2t2"].include?(user.nick) || channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
+        unless ["t2t2"].include?(user.nick) || channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
+          User(user).send("You don't have enough power to use that command")
+          return false
+        end
         return true
       end
 
