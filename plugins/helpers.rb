@@ -9,14 +9,6 @@ module Plugins
       return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y_%Z")}"
     end
 
-    def powercheck(channel, user, notify=true)
-      unless ["t2t2"].include?(user.nick) || channel.opped?(user) || channel.half_opped?(user) || channel.voiced?(user)
-        User(user).send("You don't have enough power to use that command") if notify
-        return false
-      end
-      return true
-    end
-
     def flipString(str)
       table ={
         "a" => [0x250].pack('U'),

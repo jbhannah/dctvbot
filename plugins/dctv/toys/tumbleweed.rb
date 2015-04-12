@@ -6,13 +6,16 @@ module Plugins
 
       class Tumbleweed
         include Cinch::Plugin
+        include Cinch::Extensions::Authentication
+
+        enable_authentication
 
         set :help, '!tumbleweed - Prints tumbleweed emoticon.'
 
         match /tumbleweed$/
 
         def execute(msg)
-          msg.reply("~...~...¤") if powercheck(msg.channel, msg.user)
+          msg.reply("~...~...¤")
         end
       end
 

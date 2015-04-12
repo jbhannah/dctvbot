@@ -6,6 +6,9 @@ module Plugins
 
       class Flip
         include Cinch::Plugin
+        include Cinch::Extensions::Authentication
+
+        enable_authentication
 
         set :help, '!flip [word] - Table flip emoticon. If [word] is supplied, the table is replaced with [word].'
 
@@ -13,11 +16,11 @@ module Plugins
         match /flip$/, method: :fliptable
 
         def flipword(msg, prefix, word)
-          msg.reply("(╯°□°)╯︵ #{flipString(word)}") if powercheck(msg.channel, msg.user)
+          msg.reply("(╯°□°)╯︵ #{flipString(word)}")
         end
 
         def fliptable(msg)
-          msg.reply("(╯°□°)╯︵ ┻━┻") if powercheck(msg.channel, msg.user)
+          msg.reply("(╯°□°)╯︵ ┻━┻")
         end
       end
 

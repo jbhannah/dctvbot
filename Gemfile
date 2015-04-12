@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'cinch'
-gem 'json'
 gem 'activesupport'
+gem 'cinch'
+gem 'cinch-authentication', :require => 'cinch/extensions/authentication'
 gem 'cleverbot'
+gem 'json'

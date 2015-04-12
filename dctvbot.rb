@@ -38,18 +38,22 @@ bot = Cinch::Bot.new do
     c.port    = 6667
 
     # Bot User Info
-    c.nick = "dctvbot"
-    c.user = "dctvbot"
-    c.realname = "dctvbot"
-    c.channels = ["#chat"]
+    c.nick      = "dctvbot1"
+    c.user      = "dctvbot1"
+    c.realname  = "dctvbot1"
+    c.channels  = ["#testinn"]
+
+    c.authentication          = Cinch::Configuration::Authentication.new
+    c.authentication.strategy = :channel_status
+    c.authentication.level    = :v
 
     # Prefix is the bot’s name or !
     c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
 
     c.plugins.options = {
       Plugins::CleverBotRedux => {
-        :pesternetwork => false,
-        :defaultnick => c.nick
+        :pesternetwork  => false,
+        :defaultnick    => c.nick
       }
     }
 

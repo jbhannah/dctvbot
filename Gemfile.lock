@@ -8,6 +8,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     cinch (2.2.5)
+    cinch-authentication (0.1.1)
+      cinch (~> 2.0)
     cleverbot (0.2.0)
       httparty (>= 0.8.1, < 1.0)
     httparty (0.13.3)
@@ -27,5 +29,6 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   cinch
+  cinch-authentication
   cleverbot
   json
