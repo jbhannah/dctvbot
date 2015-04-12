@@ -1,31 +1,30 @@
 # encoding: utf-8
 
-module Cinch
-  module Plugins
+module Plugins
+  module DCTV
+
     class Notifier
       include Cinch::Plugin
+      include Plugins::DCTV::DataLink
 
       listen_to :checkdctv
 
-      set :help, <<-HELP
-no commands
-  This plugin is for monitoring the diamondclub.tv api and alerting live streams accordingly
-  HELP
-
       def listen(m, bot)
-        statuses = DctvAPI.getJson
-
+        statuses = dctvApiJson
         statuses.each do |stream|
           id = Integer(stream["StreamID"])
           if stream["Channel"] != "0" && stream["Alerts"] == "true" && !bot.announced.include?(id)
-            Channel(bot.channels[0]).send("#{stream["StreamName"]} is \u0002\x0300,04LIVE\x0F on Channel #{stream["Channel"]} - http://diamondclub.tv/##{stream["Channel"]}")
+            channel = stream["Channel"]
+            channelLink = "http://diamondclub.tv/##{channel}"
+            live = Format(:white, :red, "LIVE")
+            Channel(bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink}"))
             bot.announced << id
           elsif stream["Channel"] == "0" && bot.announced.include?(id)
-            bot.log("#{stream["StreamName"]} is no longer live", :info)
             bot.announced.delete(id)
           end
         end
       end
     end
+
   end
 end
