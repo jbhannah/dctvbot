@@ -2,20 +2,20 @@
 A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)
 
 ## diamondclub.tv commands
-`!whatson` - Display what is currently streaming live on dctv  
-`!whatsnext` - Display the next scheduled show  
-`!schedule` - Display the schedueld shows for the next 48 hours
+`!whatson` or `!now` - Display what is currently live on diamondclub.tv  
+`!whatsnext` or `!next` - Display the next scheduled show for Channel 1 http://diamondclub.tv/#1  
+`!schedule` - Display the scheduled shows for the next 48 hours for Channel 1 http://diamondclub.tv/#1
 
 ## Help commands
 `!help` or `/msg dctvbot help` - Post a short introduction and list available plugins.  
 `/msg dctvbot help <plugin>` - List all commands available in a plugin.  
-`/msg dctvbot help search <query>` - Search all plugin’s commands and list all commands containing <query>.
+`/msg dctvbot help search <query>` - Search all plugin’s commands and list all commands containing <query>.  
 
 ## Random fun commands
 **Restricted to users with voice or higher.**  
-`!flip [word]` - Prints tableflip emoji, when [word] is supplied, the table is replaced with a flipped version [word]  
+`!flip [word]` - Prints tableflip emoji, when [word] is supplied, the table is replaced with flipped [word]  
 `!tumbleweed` -  Prints tumbleweed characters  
-`!boil` or `#boiled` - You got boiled. #boiled may be used mid-sentance.  
+`#boiled` - You got boiled. May be used mid-sentance.  
 
 ## Cleverbot commands
 **Restricted to users with voice or higher.**  
