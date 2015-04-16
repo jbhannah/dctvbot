@@ -4,9 +4,6 @@ module Plugins
 
 	class CleverBotRedux
 		include Cinch::Plugin
-		include Cinch::Extensions::Authentication
-
-		enable_authentication
 
 		set :help, <<-HELP
 !disablechatter - Disables the bot's CleverBot interface. Voiced or higher only.
