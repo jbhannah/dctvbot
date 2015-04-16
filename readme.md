@@ -2,9 +2,9 @@
 A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)
 
 ## diamondclub.tv commands
-`!whatson` or `!now` - Display channels that are currently live.
-`!whatsnext` or `!next` - Display next scheduled show.
-`!schedule` - Display scheduled shows for the next 48 hours.
+`!whatson` or `!now` - Display channels that are currently live.  
+`!whatsnext` or `!next` - Display next scheduled show.  
+`!schedule` - Display scheduled shows for the next 48 hours.  
 
 ## Help commands
 `!help` or `/msg dctvbot help` - Post a short introduction and list available plugins.  
