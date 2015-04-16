@@ -3,7 +3,6 @@
 require 'bundler/setup'
 Bundler.require
 
-require 'active_support/time'
 require 'net/http'
 require 'rexml/document'
 require 'set'

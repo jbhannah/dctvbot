@@ -16,7 +16,7 @@ module Plugins
         match /flip$/, method: :fliptable
 
         def flipword(msg, prefix, word)
-          msg.reply("(╯°□°)╯︵ #{flipString(word)}")
+          msg.reply("(╯°□°)╯︵ #{word.flip}")
         end
 
         def fliptable(msg)
