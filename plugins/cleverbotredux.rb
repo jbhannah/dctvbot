@@ -1,4 +1,5 @@
 # encoding: utf-8
+# Adapted from https://github.com/curiouslyExistential/cinch-cleverbotredux
 
 module Plugins
 

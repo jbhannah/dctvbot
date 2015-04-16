@@ -7,7 +7,7 @@ module Plugins
 
     set :help, 'help [name] - prints information about a command (or all commands with no name specified). Responds though private message only.'
 
-    match /help (\w+)/, method: :with_name
+    # match /help (\w+)/, method: :with_name
     match /help$/, method: :without_name
     match /^help (\w+)/, use_prefix: false, react_on: :private, method: :with_name
     match /^help$/, use_prefix: false, react_on: :private, method: :without_name

@@ -16,7 +16,7 @@ module Plugins
           if stream["Channel"] != "0" && stream["Alerts"] == "true" && !bot.announced.include?(id)
             channel = stream["Channel"]
             channelLink = "http://diamondclub.tv/##{channel}"
-            live = Format(:white, :red, "LIVE")
+            live = Format(:white, :red, " LIVE ")
             Channel(bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink}"))
             bot.announced << id
           elsif stream["Channel"] == "0" && bot.announced.include?(id)
