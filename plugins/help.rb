@@ -5,7 +5,7 @@ module Plugins
   class Help
     include Cinch::Plugin
 
-    set :help, 'help [name] - prints information about a command (or all commands with no name specified). Responds though private message only.'
+    set :help, 'help [name] - Prints information about a command (or all commands with no name specified). Responds though private message only.'
 
     # match /help (\w+)/, method: :with_name
     match /help$/, method: :without_name
@@ -33,7 +33,7 @@ module Plugins
     def without_name(m)
       plugin_names = []
       @bot.plugins.each { |plugin| plugin_names << plugin.class.plugin_name unless plugin.class.help.nil? }
-      m.user.send "Active plugins: #{plugin_names.join(', ')}"
+      m.user.send "Readme: https://github.com/tinnvec/dctvbot/blob/master/readme.md\nActive plugins: #{plugin_names.join(', ')}"
     end
   end
 
