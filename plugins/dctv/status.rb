@@ -7,15 +7,13 @@ module Plugins
       include Cinch::Plugin
 
       set :help, <<-HELP
-!whatson - Display channels that are currently live.
-!whatsnext - Display next scheduled show.
+!whatson or !now - Display channels that are currently live.
+!whatsnext or !next - Display next scheduled show.
 !schedule - Display scheduled shows for the next 48 hours.
 HELP
 
       match /whatson$/, method: :whatson
-      match /whatsnext$/, method: :whatsnext
-      match /schedule$/, method: :schedule
-
+      match /now$/, method: :whatson
       def whatson(msg)
         apiResult = dctvApiJson
         onCount = 0
@@ -30,6 +28,8 @@ HELP
         end
       end
 
+      match /whatsnext$/, method: :whatsnext
+      match /next$/, method: :whatsnext
       def whatsnext(msg)
         entries = getCalendarEntries(1)
         reply = "Next Scheduled Show: "
@@ -39,6 +39,7 @@ HELP
         msg.reply(reply)
       end
 
+      match /schedule$/, method: :schedule
       def schedule(msg)
         entries = getCalendarEntries
         msg.reply "Here are the scheduled shows for the next 48 hours:"
