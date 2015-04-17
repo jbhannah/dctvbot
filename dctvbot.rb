@@ -17,6 +17,7 @@ require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/boiled'
 require_relative 'plugins/dctv/toys/flip'
+require_relative 'plugins/dctv/toys/preshow'
 require_relative 'plugins/dctv/toys/tumbleweed'
 
 # Other classes
@@ -61,12 +62,9 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Boiled,
       Plugins::DCTV::Toys::Flip,
+      Plugins::DCTV::Toys::Preshow,
       Plugins::DCTV::Toys::Tumbleweed
     ]
-  end
-
-  on :message, /^preshow\?$/i do |msg|
-    msg.reply("No.", true)
   end
 
   trap "SIGINT" do
