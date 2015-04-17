@@ -8,8 +8,7 @@ require 'rexml/document'
 require 'set'
 
 # Helpers
-require_relative 'plugins/helpers'
-require_relative 'plugins/dctv/data_link'
+require_relative 'helpers/data_link'
 
 # Plugins
 require_relative 'plugins/cleverbotredux'
@@ -20,12 +19,11 @@ require_relative 'plugins/dctv/toys/boiled'
 require_relative 'plugins/dctv/toys/flip'
 require_relative 'plugins/dctv/toys/tumbleweed'
 
-# Classes
+# Other classes
 require_relative 'plugins/dctv/watcher'
 
 # Include helpers
-include Plugins::Helpers
-include Plugins::DCTV::DataLink
+include Helpers::DataLink
 
 # Other includes
 include REXML
