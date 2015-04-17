@@ -5,7 +5,7 @@ module Plugins
 
     class Notifier
       include Cinch::Plugin
-      include Plugins::DCTV::DataLink
+      include Helpers::DataLink
 
       listen_to :checkdctv
 

@@ -5,6 +5,7 @@ module Plugins
 
     class Status
       include Cinch::Plugin
+      include Helpers::DataLink
 
       set :help, <<-HELP
 !whatson or !now - Display channels that are currently live.
