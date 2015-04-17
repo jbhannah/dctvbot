@@ -6,6 +6,7 @@ Bundler.require
 require 'net/http'
 require 'rexml/document'
 require 'set'
+require 'yaml'
 
 # Helpers
 require_relative 'helpers/data_link'
@@ -31,15 +32,17 @@ include REXML
 
 bot = Cinch::Bot.new do
   configure do |c|
+    config = YAML.load(File.open("config.yml"))
+
     # Server Info
-    c.server  = "irc.chatrealm.net"
-    c.port    = 6667
+    c.server  = config['server']['host']
+    c.port    = config['server']['port']
 
     # Bot User Info
-    c.nick      = "dctvbot"
-    c.user      = "dctvbot"
-    c.realname  = "dctvbot"
-    c.channels  = ["#chat"]
+    c.nick      = config['bot']['nick']
+    c.user      = config['bot']['user']
+    c.realname  = config['bot']['realname']
+    c.channels  = config['bot']['channels']
 
     c.authentication          = Cinch::Configuration::Authentication.new
     c.authentication.strategy = :channel_status
