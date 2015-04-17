@@ -24,7 +24,7 @@ _Restricted to users with voice or higher._
 `!disablechatter` - Disables the bot's CleverBot interface.  
 `!enablechatter` - Re-enables the bot's CleverBot interface.  
 `!globaldisable` - Globally disables the CleverBot interface. This command can only be used by specified users (currently set to channel ops).  
-`!globalenable` - Globally re-enables the interface. This command contains the same permissions as globaldisable. NOTE: This will not reset any restriction that a channel operator has imposed on the bot with the previous commands.
+`!globalenable` - Globally re-enables the interface. This command contains the same permissions as globaldisable. NOTE: This will not reset any restriction that a channel operator has imposed on the bot with the previous commands.  
 
 # Installation
 ```bash
@@ -32,6 +32,12 @@ git clone https://github.com/tinnvec/dctvbot.git
 cd dctvbot/
 bundle install
 ```
+
+# Configuration
+```bash
+cp config.sample.yml config.yml
+```
+Then edit `config.yml` and fill in with desired details. If you want bot to identify itself, you must register the nick manually first.  
 
 # Usage
 ```bash
@@ -45,3 +51,4 @@ git push heroku master
 heroku scale web=0
 heroku scale bot=1
 ```
+`Procfile` will be read by Heroku and used to start the script.
