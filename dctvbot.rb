@@ -51,14 +51,8 @@ bot = Cinch::Bot.new do
     # Prefix is the bot’s name or !
     c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
 
-    c.plugins.options = {
-      Plugins::CleverBotRedux => {
-        :pesternetwork  => false,
-        :defaultnick    => c.nick
-      }
-    }
-
     c.plugins.plugins = [
+      Cinch::Plugins::Identify,
       Plugins::CleverBotRedux,
       Plugins::Help,
       Plugins::DCTV::Notifier,
@@ -68,6 +62,17 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Toys::Preshow,
       Plugins::DCTV::Toys::Tumbleweed
     ]
+
+    c.plugins.options = {
+      Cinch::Plugins::Identify => {
+        type: :nickserv,
+        password: config['bot']['password']
+      },
+      Plugins::CleverBotRedux => {
+        pesternetwork: false,
+        defaultnick:   c.nick
+      }
+    }
   end
 
   trap "SIGINT" do
