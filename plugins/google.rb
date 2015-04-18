@@ -9,7 +9,7 @@ module Plugins
 
     match /google (.+)/
 
-    def execute(msg, prefix, query)
+    def execute(msg, query)
       msg.reply(search(query))
     end
 
