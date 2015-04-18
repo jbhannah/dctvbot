@@ -30,24 +30,9 @@ HELP
 			else
 				matched = "?"
 			end
-			@abbreviation = @defaultnick[0].chr.capitalize
-			@abbreviation << matched
-			@abbreviation << ": "
 			@prefixUse = true
+			@disabledChannels = Set.new
 			@cleverbot = Cleverbot::Client.new
-			colour1 = rand(200).to_s
-			colour1 << ','
-			colour2 = rand(200).to_s
-			colour2 << ','
-			colour3 = rand(200).to_s
-			combinedcolour = colour1
-			combinedcolour << colour2
-			combinedcolour << colour3
-			@defaultPrefix = "<c="
-			@defaultPrefix << combinedcolour
-			@defaultPrefix << ">"
-			@defaultPrefix << @abbreviation
-			@defaultSuffix = "<\/c>"
 		end
 
 		def execute(m, message)
@@ -56,6 +41,7 @@ HELP
 			return if [ "whatson", "whatsnext", "schedule", "help", "flip",
 									"tumbleweed", "disablechatter", "enablechatter",
 									"globaldisable", "globalenable", "chatterhelp" ].include? message
+			return if @disabledChannels.include?(m.channel)
 			if m.channel
 				msg_back = @cleverbot.write message
 				m.reply(msg_back, @prefixUse)
@@ -64,22 +50,24 @@ HELP
 
 		def disableChanChat(m, message)
 			return unless authenticated? m
-			prefix = @defaultPrefix.dup
-			suffix = @defaultSuffix.dup
-			tosend = prefix
-			tosend << "CleverBot disabled."
-			tosend << suffix
-			m.reply(tosend, false)
+			if @disabledChannels.add?(m.channel) == nil
+				tosend = "CleverBot already disabled."
+			else
+				tosend = "CleverBot disabled."
+				@disabledChannels + ["#{m.channel}"]
+			end
+			m.reply(tosend, @prefixUse)
 		end
 
 		def enableChanChat(m, message)
 			return unless authenticated? m
-			prefix = @defaultPrefix.dup
-			suffix = @defaultSuffix.dup
-			tosend = prefix
-			tosend << "CleverBot enabled."
-			tosend << suffix
-			m.reply(tosend, false)
+			if @disabledChannels.delete?(m.channel) == nil
+				tosend = "CleverBot already enabled."
+			else
+				tosend = "CleverBot enabled."
+				@disabledChannels - ["#{m.channel}"]
+			end
+			m.reply(tosend, @prefixUse)
 		end
 	end
 
