@@ -3,7 +3,9 @@
 require 'bundler/setup'
 Bundler.require
 
+require 'cgi'
 require 'net/http'
+require 'open-uri'
 require 'rexml/document'
 require 'set'
 require 'yaml'
@@ -13,6 +15,7 @@ require_relative 'helpers/data_link'
 
 # Plugins
 require_relative 'plugins/cleverbotredux'
+require_relative 'plugins/google'
 require_relative 'plugins/help'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
@@ -54,6 +57,7 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [
       Cinch::Plugins::Identify,
       Plugins::CleverBotRedux,
+      Plugins::Google,
       Plugins::Help,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::Status,
