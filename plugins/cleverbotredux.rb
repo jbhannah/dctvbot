@@ -18,26 +18,13 @@ HELP
 
 		def initialize(*args)
 			super
-			@enabled = true
 			@defaultnick = config[:defaultnick] || "cleverBot"
-			regexp = /[A-Z]/
-			matched = regexp.match(@defaultnick)
-			if matched
-				matched = matched[0]
-			else
-				matched = "?"
-			end
 			@prefixUse = true
 			@disabledChannels = Set.new
 			@cleverbot = Cleverbot::Client.new
 		end
 
 		def execute(m, message)
-			return unless @enabled
-			return if /flip (.+)/ =~ message || /help (.+)/ =~ message
-			return if [ "whatson", "whatsnext", "schedule", "help", "flip",
-									"tumbleweed", "disablechatter", "enablechatter",
-									"globaldisable", "globalenable", "chatterhelp" ].include? message
 			return if @disabledChannels.include?(m.channel)
 			if m.channel
 				msg_back = @cleverbot.write message

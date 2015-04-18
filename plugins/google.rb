@@ -23,8 +23,8 @@ module Plugins
         link = "http://#{link}"
       end
       CGI.unescape_html "#{title} [#{link}]"
-    # rescue
-    #   "No results found"
+    rescue
+      "No results found"
     end
   end
 

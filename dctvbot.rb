@@ -53,7 +53,7 @@ bot = Cinch::Bot.new do
     c.authentication.level    = :v
 
     # Prefix is the bot’s name or !
-    c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
+    # c.plugins.prefix = lambda{ |msg| Regexp.compile("^(!|#{Regexp.escape(msg.bot.nick)}[:,]?\s*)") }
 
     c.plugins.plugins = [
       Cinch::Plugins::Identify,
