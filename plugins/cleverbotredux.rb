@@ -13,11 +13,8 @@ module Plugins
 HELP
 
 		match lambda { |m| /^#{m.bot.nick}[:,]?\s*(.+)/i }, use_prefix: false
-		match(/<c=\d{1,3},\d{1,3},\d{1,3}>.{2}: CB: (.+)/ , use_prefix: false)
-		match "disablechatter", use_prefix: true, method: :disableChanChat
-		match "enablechatter", use_prefix: true, method: :enableChanChat
-		match(/^\/me!disablechatter (.+)/, use_prefix: false, method: :disableChanChat)
-		match(/^\/me!enablechatter (.+)/, use_prefix: false, method: :enableChanChat)
+		match /disablechatter$/, method: :disableChanChat
+		match /enablechatter$/, method: :enableChanChat
 
 		def initialize(*args)
 			super
