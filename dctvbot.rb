@@ -21,6 +21,7 @@ require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/boiled'
 require_relative 'plugins/dctv/toys/flip'
+require_relative 'plugins/dctv/toys/inigo_montoya'
 require_relative 'plugins/dctv/toys/preshow'
 require_relative 'plugins/dctv/toys/tumbleweed'
 
@@ -63,6 +64,7 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Boiled,
       Plugins::DCTV::Toys::Flip,
+      Plugins::DCTV::Toys::InigoMontoya,
       Plugins::DCTV::Toys::Preshow,
       Plugins::DCTV::Toys::Tumbleweed
     ]
