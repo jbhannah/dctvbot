@@ -8,3 +8,6 @@ bot:
   password: password
   channels:
     - "#chat"
+plugins:
+  wolfram:
+    api: api-key

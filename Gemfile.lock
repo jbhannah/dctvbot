@@ -32,6 +32,8 @@ GEM
     trollop (2.1.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    wolfram-alpha (0.3.1)
+      nokogiri
 
 PLATFORMS
   ruby
@@ -45,3 +47,4 @@ DEPENDENCIES
   flippy
   json
   nokogiri
+  wolfram-alpha

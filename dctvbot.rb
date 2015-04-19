@@ -17,6 +17,7 @@ require_relative 'helpers/data_link'
 require_relative 'plugins/cleverbotredux'
 require_relative 'plugins/google'
 require_relative 'plugins/help'
+require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/boiled'
@@ -61,6 +62,7 @@ bot = Cinch::Bot.new do
       Plugins::CleverBotRedux,
       Plugins::Google,
       Plugins::Help,
+      Plugins::Wolfram,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Boiled,
@@ -72,14 +74,9 @@ bot = Cinch::Bot.new do
     ]
 
     c.plugins.options = {
-      Cinch::Plugins::Identify => {
-        type: :nickserv,
-        password: config['bot']['password']
-      },
-      Plugins::CleverBotRedux => {
-        pesternetwork: false,
-        defaultnick:   c.nick
-      }
+      Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
+      Plugins::CleverBotRedux => { defaultnick: c.nick },
+      Plugins::Wolfram => { :api_id => config['plugins']['wolfram']['api'] }
     }
   end
 
