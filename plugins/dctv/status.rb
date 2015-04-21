@@ -33,9 +33,9 @@ HELP
       match /next$/, method: :whatsnext
       def whatsnext(msg)
         entries = getCalendarEntries(1)
-        reply = "Next Scheduled Show: "
+        reply = ""
         entries.each do |entry|
-          reply += "#{entry["title"]} - #{timeIsLink(entry["time"])}"
+          reply += "#{entry["title"]} - #{timeUntil(entry["time"])}"
         end
         msg.reply(reply)
       end

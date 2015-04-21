@@ -62,6 +62,22 @@ module Helpers
       return "http://time.is/#{time.strftime("%H%M_%Z")}" unless includeDay
       return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y_%Z")}"
     end
+
+    def timeUntil(time, timezone='US/Eastern')
+      time = time.in_time_zone(timezone)
+      differenceInSeconds = (time - Time.now).round
+      hours = differenceInSeconds / 3600
+      remainingSeconds = differenceInSeconds % 3600
+      minutes = remainingSeconds / 60
+      remainingSeconds = remainingSeconds % 60
+      hourText = "#{hours} hour"
+      hourText += "s" if hours != 1
+      minuteText = "#{minutes} minute"
+      minuteText += "s" if minutes != 1
+      secondsText = "#{remainingSeconds} second"
+      secondsText += "s" if remainingSeconds != 1
+      return "#{hourText}, #{minuteText}, and #{secondsText}"
+    end
   end
 
 end

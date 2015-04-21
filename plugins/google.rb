@@ -18,11 +18,9 @@ module Plugins
       document = Nokogiri::HTML(open(url), nil, 'utf-8')
 
       title = document.at_css('h3.r a').content.strip
-      link = document.at_css('cite').content.strip
-      unless link =~ /^https/i
-        link = "http://#{link}"
-      end
-      CGI.unescape_html "#{title} [#{link}]"
+      link = document.at_css('h3.r a')[:href]
+      link =~ /^\/url\?q=(.+)&sa=.+/i
+      CGI.unescape_html "#{title} [ #{$1} ]"
     rescue
       "No results found"
     end
