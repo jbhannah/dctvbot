@@ -94,11 +94,13 @@ bot = Cinch::Bot.new do
 end
 
 class << bot
-  attr_accessor :announced
+  attr_accessor :announced, :official_live
 end
 bot.announced = Array.new
+bot.official_live = false
 results = dctvApiJson
 results.each do |result|
+  bot.official_live = true if Integer(result["Channel"]) == 1
   unless Integer(result["Channel"]) == 0
     bot.announced << Integer(result["StreamID"])
   end

@@ -5,7 +5,7 @@ module Plugins
   class Wolfram
     include Cinch::Plugin
 
-    set :help, '!wolfram <term> - Returns top hit on google when searching for <term>'
+    set :help, '!wolfram <query> - Attempts to answer your <query> using Wolfram Alpha'
 
     match /wolfram (.+)/
 

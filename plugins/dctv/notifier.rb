@@ -11,8 +11,15 @@ module Plugins
 
       def listen(m, bot)
         statuses = dctvApiJson
+        statuses.each do |status|
+          if status["Channel"] == "1"
+            bot.official_live = true
+            break
+          end
+          bot.official_live = false
+        end
         statuses.each do |stream|
-          id = Integer(stream["StreamID"])
+          return if bot.official_live
           if stream["Channel"] != "0" && stream["Alerts"] == "true" && !bot.announced.include?(id)
             channel = stream["Channel"]
             channelLink = "http://diamondclub.tv/##{channel}"
