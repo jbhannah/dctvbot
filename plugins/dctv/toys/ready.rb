@@ -6,16 +6,13 @@ module Plugins
 
       class Ready
         include Cinch::Plugin
-        include Cinch::Extensions::Authentication
 
-        enable_authentication
+        # set :help, 'are you ready - NotPatrick is ready... are you?. May be used mid-sentance.'
 
-        set :help, 'are you ready - NotPatrick is ready... are you?. May be used mid-sentance.'
-
-        match /are you ready/, use_prefix: false
+        match /you ready\?/, use_prefix: false
 
         def execute(msg)
-          msg.reply Format(:bold, :white, :red, ' I WAS BORN READY! ')
+          msg.reply 'I was ' + Format(:bold, 'BORN') + ' ready!'
         end
       end
 
