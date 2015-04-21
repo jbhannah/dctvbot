@@ -9,9 +9,13 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!schedule` - Display scheduled shows for the next 48 hours.  
 
 **Help commands**  
-`!help` - Replies with a private message listing available commands.   
+`!help` - Replies with a private message listing available commands.
 
 **Random fun commands**  
+`!hedberg` - Recites a random joke from Mitch Hedberg.
+`!google <term>` - Returns the top hit on google for <term>.
+`!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.
+
 _Restricted to users with voice or higher._  
 `!flip [word]` - Prints tableflip emoji, when [word] is supplied, the table is replaced with flipped [word]  
 `!tumbleweed` -  Prints tumbleweed characters  
