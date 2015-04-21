@@ -19,6 +19,7 @@ module Plugins
           bot.official_live = false
         end
         statuses.each do |stream|
+          id = Integer(stream["StreamID"])
           return if bot.official_live
           if stream["Channel"] != "0" && stream["Alerts"] == "true" && !bot.announced.include?(id)
             channel = stream["Channel"]
