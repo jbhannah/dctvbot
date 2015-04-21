@@ -26,6 +26,7 @@ require_relative 'plugins/dctv/toys/inigo_montoya'
 require_relative 'plugins/dctv/toys/mitch_hedberg'
 require_relative 'plugins/dctv/toys/preshow'
 require_relative 'plugins/dctv/toys/tumbleweed'
+require_relative 'plugins/dctv/toys/ready'
 
 # Other classes
 require_relative 'plugins/dctv/watcher'
@@ -71,6 +72,7 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Toys::MitchHedberg,
       Plugins::DCTV::Toys::Preshow,
       Plugins::DCTV::Toys::Tumbleweed
+      Plugins::DCTV::Toys::Ready
     ]
 
     c.plugins.options = {
