@@ -15,7 +15,7 @@ module Plugins
         match /are you ready/, use_prefix: false
 
         def execute(msg)
-          msg.reply('I WAS BORN READY!')
+          msg.reply Format(:bold, :white, :red, ' I WAS BORN READY! ')
         end
       end
 
