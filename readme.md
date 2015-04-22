@@ -3,24 +3,15 @@
 A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)  
 
 # Commands
-**diamondclub.tv commands**  
-`!whatson` or `!now` - Display channels that are currently live.  
-`!whatsnext` or `!next` - Display next scheduled show.  
-`!schedule` - Display scheduled shows for the next 48 hours.  
-
-**Help commands**  
-`!help` - Replies with a private message listing available commands.
-
-**Random fun commands**  
-`!hedberg` - Recites a random joke from Mitch Hedberg.  
+`!help` - Replies with a private message listing available commands.  
 `!google <term>` - Returns the top hit on google for <term>.  
 `!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
 
-_Restricted to users with voice or higher._  
-`!flip [word]` - Prints tableflip emoji, when [word] is supplied, the table is replaced with flipped [word]  
-`!tumbleweed` -  Prints tumbleweed characters  
-`#boiled` - You got boiled. May be used mid-sentance.  
-
+**diamondclub.tv commands**  
+`!now` - Display channels that are currently live.  
+`!next` - Display next scheduled show.  
+`!schedule` - Display scheduled shows for the next 48 hours.  
+  
 **Cleverbot commands**  
 _Restricted to users with voice or higher._  
 `!disablechatter` - Disables the bot's CleverBot interface.  
