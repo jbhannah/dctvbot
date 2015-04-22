@@ -10,8 +10,6 @@ module Plugins
 
         enable_authentication
 
-        set :help, '!flip [word] - Table flip emoticon. If [word] is supplied, the table is replaced with [word].'
-
         match /flip (.+)/, method: :flipword
         match /flip$/, method: :fliptable
 

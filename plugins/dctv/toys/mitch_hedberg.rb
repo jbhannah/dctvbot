@@ -7,8 +7,6 @@ module Plugins
       class MitchHedberg
         include Cinch::Plugin
 
-        set :help, '!hedberg - Prints a random Mitch Hedberg quote.'
-
         match /hedberg$/
 
         def execute(msg)

@@ -10,8 +10,6 @@ module Plugins
 
         enable_authentication
 
-        set :help, '!tumbleweed - Prints tumbleweed emoticon.'
-
         match /tumbleweed$/
 
         def execute(msg)

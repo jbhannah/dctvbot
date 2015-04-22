@@ -7,9 +7,7 @@ module Plugins
       class InigoMontoya
         include Cinch::Plugin
 
-        # set :help, '!tumbleweed - Prints tumbleweed emoticon.'
-
-        match /inconceivable$/i, use_prefix: false, method: :inconceivable
+        match /inconceivable/i, use_prefix: false, method: :inconceivable
         match /(inigo|montoya)/i, use_prefix: false, method: :inigomontoya
 
         def inconceivable(msg)

@@ -10,8 +10,6 @@ module Plugins
 
         enable_authentication
 
-        set :help, '#boiled - You just got boiled. May be used mid-sentance.'
-
         match /#boiled/, use_prefix: false
 
         def execute(msg)
