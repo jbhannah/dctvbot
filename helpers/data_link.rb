@@ -65,18 +65,8 @@ module Helpers
 
     def timeUntil(time, timezone='US/Eastern')
       time = time.in_time_zone(timezone)
-      differenceInSeconds = (time - Time.now).round
-      hours = differenceInSeconds / 3600
-      remainingSeconds = differenceInSeconds % 3600
-      minutes = remainingSeconds / 60
-      remainingSeconds = remainingSeconds % 60
-      hourText = "#{hours} hour"
-      hourText += "s" if hours != 1
-      minuteText = "#{minutes} minute"
-      minuteText += "s" if minutes != 1
-      secondsText = "#{remainingSeconds} second"
-      secondsText += "s" if remainingSeconds != 1
-      return "#{hourText}, #{minuteText}, and #{secondsText}"
+      differenceInSeconds = (time - Time.new).round
+      return differenceInSeconds.seconds.to_time_sentence
     end
   end
 
