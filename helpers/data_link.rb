@@ -30,13 +30,13 @@ module Helpers
     end
 
     def getCalendarEntries(numEntries=10)
-      calendarTz = "MDT"
       uri = URI.parse("http://www.google.com/calendar/feeds/a5jeb9t5etasrbl6dt5htkv4to%40group.calendar.google.com/public/basic")
       params = {
         orderby: "starttime",
         singleevents:"true",
         sortorder: "ascending",
         futureevents: "true",
+        ctz: "US/Eastern",
         'max-results' => "#{numEntries}"
       }
       uri.query = URI.encode_www_form(params)
@@ -49,8 +49,8 @@ module Helpers
           calItem["title"] = title.text
         end
         entry.elements.each("content") do |content|
-          content.text =~ /when:\s(.*)\sto/i
-          calItem["time"] = Time.parse("#{$1} #{calendarTz}")
+          content.text =~ /when:\s(.+)\sto/i
+          calItem["time"] = Time.parse("#{$1} EDT")
         end
         response << calItem
       end
