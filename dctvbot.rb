@@ -100,8 +100,8 @@ bot.announced = Array.new
 bot.official_live = false
 results = dctvApiJson
 results.each do |result|
-  bot.official_live = true if Integer(result["Channel"]) == 1
-  unless Integer(result["Channel"]) == 0
+  bot.official_live = true if result["Channel"] == "1"
+  unless result["Channel"] == "0"
     bot.announced << Integer(result["StreamID"])
   end
 end

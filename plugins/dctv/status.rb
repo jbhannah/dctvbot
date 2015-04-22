@@ -19,7 +19,7 @@ HELP
         apiResult = dctvApiJson
         onCount = 0
         apiResult.each do |result|
-          unless Integer(result["Channel"]) == 0
+          unless result["Channel"] == "0"
             msg.reply "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
             onCount += 1
           end
