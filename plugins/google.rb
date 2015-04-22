@@ -20,7 +20,9 @@ module Plugins
       title = document.at_css('h3.r a').content.strip
       link = document.at_css('h3.r a')[:href]
       link =~ /^\/url\?q=(.+)&sa=.+/i
-      CGI.unescape_html "#{title} [ #{$1} ]"
+      title = CGI.unescape_html title
+      link = URI.unescape $1
+      "#{title} [ #{link} ]"
     rescue
       "No results found"
     end
