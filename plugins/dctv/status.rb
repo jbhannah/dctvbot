@@ -32,12 +32,13 @@ HELP
       match /whatsnext$/, method: :whatsnext
       match /next$/, method: :whatsnext
       def whatsnext(msg)
-        entries = getCalendarEntries(1)
-        reply = ""
-        entries.each do |entry|
-          reply += "#{entry["title"]} - #{timeUntil(entry["time"])}"
+        entries = getCalendarEntries(2)
+        if entries[0]["time"] < Time.new
+          entry = entries[1]
+        else
+          entry = entries[0]
         end
-        msg.reply(reply)
+        msg.reply "#{entry["title"]} - #{timeUntil(entry["time"])}"
       end
 
       match /schedule$/, method: :schedule
