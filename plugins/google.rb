@@ -10,6 +10,7 @@ module Plugins
     match /google (.+)/
 
     def execute(msg, query)
+      return unless (@bot.all_commands_enabled || authenticated?(msg))
       msg.reply(search(query))
     end
 

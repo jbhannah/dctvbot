@@ -16,6 +16,7 @@ HELP
 
       match /now/, method: :now
       def now(msg)
+        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
         apiResult = dctvApiJson
         onCount = 0
         apiResult.each do |result|
@@ -31,6 +32,7 @@ HELP
 
       match /next/, method: :next
       def next(msg)
+        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
         entries = getCalendarEntries(2)
         if entries[0]["time"] < Time.new
           entry = entries[1]
@@ -42,6 +44,7 @@ HELP
 
       match /schedule/, method: :schedule
       def schedule(msg)
+        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
         entries = getCalendarEntries
         msg.reply "Here are the scheduled shows for the next 48 hours:"
         entries.each do |entry|

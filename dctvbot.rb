@@ -98,11 +98,13 @@ bot = Cinch::Bot.new do
 end
 
 class << bot
-  attr_accessor :announced, :official_live, :toys_enabled
+  attr_accessor :announced, :official_live, :toys_enabled, :dctv_commands_enabled, :all_commands_enabled
 end
 bot.announced = Array.new
 bot.official_live = false
 bot.toys_enabled = true
+bot.all_commands_enabled = true
+bot.dctv_commands_enabled = true
 results = dctvApiJson
 results.each do |result|
   bot.official_live = true if result["Channel"] == "1"

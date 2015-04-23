@@ -19,8 +19,12 @@ _Restricted to users with voice or higher._
 
 **Control commands**  
 _Restricted to users with voice or higher._  
-`!toyson` - Re-enables the toys if they've been turned off  
-`!toysoff` - Disables the toys in case of emergency  
+`!toysoff` - Disables the toys  
+`!toyson` - Re-enables the toys  
+`!dctvoff` - Disables diamondclub.tv commands
+`!dctvon` - Re-enables diamondclub.tv commands
+`!lockdown` - Disables all commands in case of emergency
+`!lockdownoff` - Removes lockdown status
 
 # Installation
 ```bash

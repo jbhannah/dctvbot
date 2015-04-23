@@ -20,7 +20,7 @@ module Plugins
 		end
 
 		def execute(m, message)
-			return if @disabledChannels.include?(m.channel)
+			return if @disabledChannels.include?(m.channel) || !@bot.all_commands_enabled
 			if m.channel
 				msg_back = @cleverbot.write message
 				m.reply(msg_back, @prefixUse)
@@ -28,7 +28,7 @@ module Plugins
 		end
 
 		def disableChanChat(m, message)
-			return unless authenticated? m
+			return unless (@bot.all_commands_enabled || authenticated?(m))
 			if @disabledChannels.add?(m.channel) == nil
 				tosend = "CleverBot already disabled."
 			else
@@ -39,7 +39,7 @@ module Plugins
 		end
 
 		def enableChanChat(m, message)
-			return unless authenticated? m
+			return unless (@bot.all_commands_enabled || authenticated?(m))
 			if @disabledChannels.delete?(m.channel) == nil
 				tosend = "CleverBot already enabled."
 			else
