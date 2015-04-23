@@ -22,7 +22,7 @@ module Plugins
       link =~ /^\/url\?q=(.+)&sa=.+/i
       title = CGI.unescape_html title
       link = URI.unescape $1
-      "#{title} [ #{link} ]"
+      "#{title}\n#{link}"
     rescue
       "No results found"
     end

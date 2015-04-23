@@ -8,11 +8,10 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        enable_authentication
-
-        match /tumbleweed$/
+        match /tumbleweed/
 
         def execute(msg)
+          return unless @bot.toys_enabled || authenticated? msg
           msg.reply("~...~...¤")
         end
       end

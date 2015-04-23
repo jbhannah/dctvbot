@@ -8,16 +8,15 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        enable_authentication
-
         match /flip (.+)/, method: :flipword
-        match /flip$/, method: :fliptable
-
         def flipword(msg, word)
+          return unless @bot.toys_enabled || authenticated? msg
           msg.reply("(╯°□°)╯︵ #{word.flip}")
         end
 
+        match /flip$/, method: :fliptable
         def fliptable(msg)
+          return unless @bot.toys_enabled || authenticated? msg
           msg.reply("(╯°□°)╯︵ ┻━┻")
         end
       end

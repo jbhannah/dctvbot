@@ -16,6 +16,7 @@ require_relative 'helpers/bot_helpers'
 
 # Plugins
 require_relative 'plugins/cleverbotredux'
+require_relative 'plugins/command_control'
 require_relative 'plugins/google'
 require_relative 'plugins/help'
 require_relative 'plugins/wolfram'
@@ -63,6 +64,7 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [
       Cinch::Plugins::Identify,
       Plugins::CleverBotRedux,
+      Plugins::CommandControl,
       Plugins::Google,
       Plugins::Help,
       Plugins::Wolfram,
@@ -96,10 +98,11 @@ bot = Cinch::Bot.new do
 end
 
 class << bot
-  attr_accessor :announced, :official_live
+  attr_accessor :announced, :official_live, :toys_enabled
 end
 bot.announced = Array.new
 bot.official_live = false
+bot.toys_enabled = true
 results = dctvApiJson
 results.each do |result|
   bot.official_live = true if result["Channel"] == "1"

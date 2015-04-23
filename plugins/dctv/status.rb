@@ -5,17 +5,17 @@ module Plugins
 
     class Status
       include Cinch::Plugin
-      include Helpers::DataLink
+      include Helpers::DataHelpers
+      include Helpers::BotHelpers
 
       set :help, <<-HELP
-!whatson or !now - Display channels that are currently live.
-!whatsnext or !next - Display next scheduled show.
+!now - Display channels that are currently live.
+!next - Display next scheduled show and estimated time until it starts.
 !schedule - Display scheduled shows for the next 48 hours.
 HELP
 
-      match /whatson$/, method: :whatson
-      match /now$/, method: :whatson
-      def whatson(msg)
+      match /now/, method: :now
+      def now(msg)
         apiResult = dctvApiJson
         onCount = 0
         apiResult.each do |result|
@@ -29,19 +29,18 @@ HELP
         end
       end
 
-      match /whatsnext$/, method: :whatsnext
-      match /next$/, method: :whatsnext
-      def whatsnext(msg)
+      match /next/, method: :next
+      def next(msg)
         entries = getCalendarEntries(2)
         if entries[0]["time"] < Time.new
           entry = entries[1]
         else
           entry = entries[0]
         end
-        msg.reply "#{entry["title"]} - #{timeUntil(entry["time"])}"
+        msg.reply "Next scheduled show: #{entry["title"]} (#{timeUntil(entry["time"])})"
       end
 
-      match /schedule$/, method: :schedule
+      match /schedule/, method: :schedule
       def schedule(msg)
         entries = getCalendarEntries
         msg.reply "Here are the scheduled shows for the next 48 hours:"

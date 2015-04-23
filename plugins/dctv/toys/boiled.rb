@@ -8,11 +8,10 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        enable_authentication
-
         match /#boiled/, use_prefix: false
 
         def execute(msg)
+          return unless @bot.toys_enabled || authenticated? msg
           msg.reply Format(:bold, :white, :red, ' BBBBBOOOOOIIILLLED!! ')
         end
       end

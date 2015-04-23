@@ -5,9 +5,9 @@ module Plugins
   class Help
     include Cinch::Plugin
 
-    set :help, '!help - Prints available commands and their descriptions. Responds though private message only.'
+    set :help, '!help - Prints available commands and their descriptions. Responds though private message.'
 
-    match /help$/
+    match /help/
 
     def execute(m)
       m.user.send "Readme: https://github.com/tinnvec/dctvbot/blob/master/readme.md"
