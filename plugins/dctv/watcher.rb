@@ -10,7 +10,7 @@ module Plugins
       def start
         while true
           sleep 10
-          @bot.handlers.dispatch(:checkdctv, nil, @bot)
+          @bot.handlers.dispatch(:checkdctv)
         end
       end
     end

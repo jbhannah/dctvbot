@@ -7,11 +7,6 @@ module Plugins
 		include Cinch::Plugin
 		include Cinch::Extensions::Authentication
 
-		set :help, <<-HELP
-!disablechatter - Disables the bot's CleverBot interface. Voiced or higher only.
-!enablechatter - Re-enables the bot's CleverBot interface. Voiced or higher only.
-HELP
-
 		match lambda { |m| /^#{m.bot.nick}[:,]?\s*(.+)/i }, use_prefix: false
 		match /disablechatter$/, method: :disableChanChat
 		match /enablechatter$/, method: :enableChanChat

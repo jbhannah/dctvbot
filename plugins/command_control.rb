@@ -8,14 +8,7 @@ module Plugins
 
     enable_authentication
 
-    set :help, <<-HELP
-!toyson - Re-enables the toys if they've been turned off
-!toysoff - Disables the toys in case of emergency
-HELP
-
     match /toyson/i, method: :enable_toys
-    match /toysoff/i, method: :disable_toys
-
     def enable_toys(msg)
       if @bot.toys_enabled
         msg.reply "Toys are already enabled"
@@ -25,6 +18,7 @@ HELP
       end
     end
 
+    match /toysoff/i, method: :disable_toys
     def disable_toys(msg)
       if @bot.toys_enabled
         @bot.toys_enabled = false

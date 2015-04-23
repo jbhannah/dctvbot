@@ -5,8 +5,6 @@ module Plugins
   class Help
     include Cinch::Plugin
 
-    set :help, '!help - Prints available commands and their descriptions. Responds though private message.'
-
     match /help/
 
     def execute(m)

@@ -3,19 +3,24 @@
 A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)  
 
 # Commands
-`!help` - Replies with a private message listing available commands.  
+`!help` - Prints available commands and their descriptions. Responds though private message.
 `!google <term>` - Returns the top hit on google for <term>.  
 `!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
 
 **diamondclub.tv commands**  
 `!now` - Display channels that are currently live.  
-`!next` - Display next scheduled show.  
+`!next` - Display next scheduled show and estimated time until it starts.  
 `!schedule` - Display scheduled shows for the next 48 hours.  
-  
+
 **Cleverbot commands**  
 _Restricted to users with voice or higher._  
 `!disablechatter` - Disables the bot's CleverBot interface.  
 `!enablechatter` - Re-enables the bot's CleverBot interface.  
+
+**Control commands**  
+_Restricted to users with voice or higher._  
+`!toyson` - Re-enables the toys if they've been turned off  
+`!toysoff` - Disables the toys in case of emergency  
 
 # Installation
 ```bash

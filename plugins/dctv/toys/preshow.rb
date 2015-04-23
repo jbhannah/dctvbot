@@ -11,7 +11,7 @@ module Plugins
         match /^pre\-?show\?$/i, use_prefix: false
 
         def execute(msg)
-          return unless @bot.toys_enabled || authenticated? msg
+          return unless (@bot.toys_enabled || authenticated?(msg))
           msg.reply("No.", true)
         end
       end
