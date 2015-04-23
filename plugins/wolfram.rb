@@ -4,13 +4,14 @@ module Plugins
 
   class Wolfram
     include Cinch::Plugin
+    include Cinch::Extensions::Authentication
 
     set :help, '!wolfram <query> - Attempts to answer your <query> using Wolfram Alpha'
 
     match /wolfram (.+)/
 
     def execute(m, query)
-      return unless (@bot.all_commands_enabled || authenticated?(msg))
+      return unless (@bot.search_enabled || authenticated?(msg))
       m.reply search(query)
     end
 

@@ -36,6 +36,34 @@ module Plugins
       end
     end
 
+    match /searchon/i, method: :enable_search
+    def enable_search(msg)
+      unless @bot.all_commands_enabled
+        msg.user.notice "All commands are currently disabled"
+        return
+      end
+      if @bot.search_enabled
+        msg.reply "Search commands are already enabled"
+      else
+        @bot.search_enabled = true
+        msg.reply "Search commands have been enabled"
+      end
+    end
+
+    match /searchoff/i, method: :disable_search
+    def disable_search(msg)
+      unless @bot.all_commands_enabled
+        msg.user.notice "All commands are currently disabled"
+        return
+      end
+      if @bot.search_enabled
+        @bot.search_enabled = false
+        msg.reply "Search commands have been disabled"
+      else
+        msg.reply "Search commands are already disabled"
+      end
+    end
+
     match /dctvon/i, method: :enable_dctv
     def enable_dctv(msg)
       unless @bot.all_commands_enabled
@@ -68,6 +96,7 @@ module Plugins
     def lockdown(msg)
       if @bot.all_commands_enabled
         @bot.toys_enabled = false
+        @bot.search_enabled = false
         @bot.dctv_commands_enabled = false
         @bot.all_commands_enabled = false
         msg.reply "All commands disabled"
@@ -82,6 +111,7 @@ module Plugins
         msg.reply "Commands are already enabled"
       else
         @bot.toys_enabled = true
+        @bot.search_enabled = true
         @bot.dctv_commands_enabled = true
         @bot.all_commands_enabled = true
         msg.reply "All commands enabled"

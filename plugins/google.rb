@@ -4,13 +4,14 @@ module Plugins
 
   class Google
     include Cinch::Plugin
+    include Cinch::Extensions::Authentication
 
     set :help, '!google <term> - Returns top hit on google when searching for <term>'
 
     match /google (.+)/
 
     def execute(msg, query)
-      return unless (@bot.all_commands_enabled || authenticated?(msg))
+      return unless (@bot.search_enabled || authenticated?(msg))
       msg.reply(search(query))
     end
 

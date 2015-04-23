@@ -5,6 +5,7 @@ module Plugins
 
     class Status
       include Cinch::Plugin
+      include Cinch::Extensions::Authentication
       include Helpers::DataHelpers
       include Helpers::BotHelpers
 
