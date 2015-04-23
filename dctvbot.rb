@@ -11,7 +11,8 @@ require 'set'
 require 'yaml'
 
 # Helpers
-require_relative 'helpers/data_link'
+require_relative 'helpers/data_helpers'
+require_relative 'helpers/bot_helpers'
 
 # Plugins
 require_relative 'plugins/cleverbotredux'
@@ -32,7 +33,8 @@ require_relative 'plugins/dctv/toys/ready'
 require_relative 'plugins/dctv/watcher'
 
 # Include helpers
-include Helpers::DataLink
+include Helpers::DataHelpers
+include Helpers::BotHelpers
 
 # Other includes
 include REXML

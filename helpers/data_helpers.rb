@@ -2,7 +2,7 @@
 
 module Helpers
 
-  module DataLink
+  module DataHelpers
     def dctvApiJson
       # Returns parsed JSON from dctv api info
       url = "http://diamondclub.tv/api/status.php"
@@ -55,18 +55,6 @@ module Helpers
         response << calItem
       end
       return response
-    end
-
-    def timeIsLink(time, includeDay=false, timezone='US/Eastern')
-      time = time.in_time_zone(timezone)
-      return "http://time.is/#{time.strftime("%H%M_%Z")}" unless includeDay
-      return "http://time.is/#{time.strftime("%H%M_%d_%b_%Y_%Z")}"
-    end
-
-    def timeUntil(time, timezone='US/Eastern')
-      time = time.in_time_zone(timezone)
-      differenceInSeconds = (time - Time.new).round
-      return differenceInSeconds.seconds.to_time_sentence
     end
   end
 
