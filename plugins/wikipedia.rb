@@ -29,7 +29,7 @@ module Plugins
       url = "http://en.wikipedia.org/w/index.php?search=#{term}"
 
       # Truncate text and url if they are too long
-      text = Cinch::Toolbox.truncate(get_def(term, url), @max_length)
+      text = Cinch::Toolbox.truncate(get_def(term, url), @max_length).strip
       url  = Cinch::Toolbox.shorten(url)
 
       "#{text} #{url}"
