@@ -4,21 +4,20 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 
 # Commands
 `!help` - Prints available commands and their descriptions. Responds though private message.
-`!google <term>` - Returns the top hit on google for <term>.  
-`!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
 
 **diamondclub.tv commands**  
 `!now` - Display channels that are currently live.  
 `!next` - Display next scheduled show and estimated time until it starts.  
 `!schedule` - Display scheduled shows for the next 48 hours.  
 
-**Cleverbot commands**  
-_Restricted to users with voice or higher._  
-`!disablechatter` / `!enablechatter` - Disable/enable the bot's CleverBot interface.  
+**Search commands**  
+`!google <term>` - Returns the top hit on google for <term>.  
+`!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
 
 **Control commands**  
 _Restricted to users with voice or higher._  
 `!toysoff` / `!toyson` - Disable/enable the toys  
+`!disablechatter` / `!enablechatter` - Disable/enable the CleverBot interface.  
 `!searchoff` / `!searchon` - Disable/enable search commands  
 `!dctvoff` / `!dctvon` - Disables diamondclub.tv commands  
 `!lockdown` / `!lockdownoff` - Disable/enable all commands in case of emergency  
