@@ -10,42 +10,42 @@ module Plugins
 
     match /toyson/i, method: :enable_toys
     def enable_toys(msg)
-      enable_command_set(msg, @bot.toys_enabled, "Toy commands")
+      @bot.toys_enabled = enable_command_set(msg, @bot.toys_enabled, "Toy commands")
     end
 
     match /toysoff/i, method: :disable_toys
     def disable_toys(msg)
-      disable_command_set(msg, @bot.toys_enabled, "Toy commands")
+      @bot.toys_enabled = disable_command_set(msg, @bot.toys_enabled, "Toy commands")
     end
 
     match /chatteron/i, method: :enable_cleverbot
 		def enable_cleverbot(msg)
-      enable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interface")
+      @bot.cleverbot_enabled = enable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interfaces")
 		end
 
     match /chatteroff/i, method: :disable_cleverbot
     def disable_cleverbot(msg)
-      disable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interface")
+      @bot.cleverbot_enabled = disable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interfaces")
 		end
 
     match /searchon/i, method: :enable_search
     def enable_search(msg)
-      enable_command_set(msg, @bot.search_enabled, "Search commands")
+      @bot.search_enabled = enable_command_set(msg, @bot.search_enabled, "Search commands")
     end
 
     match /searchoff/i, method: :disable_search
     def disable_search(msg)
-      disable_command_set(msg, @bot.search_enabled, "Search commands")
+      @bot.search_enabled = disable_command_set(msg, @bot.search_enabled, "Search commands")
     end
 
     match /dctvon/i, method: :enable_dctv
     def enable_dctv(msg)
-      enable_command_set(msg, @bot.dctv_commands_enabled, "DCTV commands")
+      @bot.dctv_commands_enabled = enable_command_set(msg, @bot.dctv_commands_enabled, "DCTV commands")
     end
 
     match /dctvoff/i, method: :disable_dctv
     def disable_dctv(msg)
-      disable_command_set(msg, @bot.dctv_commands_enabled, "DCTV commands")
+      @bot.dctv_commands_enabled = disable_command_set(msg, @bot.dctv_commands_enabled, "DCTV commands")
     end
 
     match /lockdown$/i, method: :lockdown
@@ -84,11 +84,11 @@ module Plugins
           return
         end
         if command_set_boolean
-          command_set_boolean = false
           msg.reply "#{command_set_name} have been disabled"
         else
           msg.reply "#{command_set_name} are already disabled"
         end
+        return false
       end
 
       def enable_command_set(msg, command_set_boolean, command_set_name)
@@ -99,9 +99,9 @@ module Plugins
         if command_set_boolean
           msg.reply "#{command_set_name} are already enabled"
         else
-          command_set_boolean = true
           msg.reply "#{command_set_name} have been enabled"
         end
+        return true
       end
   end
 
