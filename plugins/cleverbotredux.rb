@@ -8,45 +8,18 @@ module Plugins
 		include Cinch::Extensions::Authentication
 
 		match lambda { |m| /^#{m.bot.nick}[:,]?\s*(.+)/i }, use_prefix: false
-		match /disablechatter$/, method: :disableChanChat
-		match /enablechatter$/, method: :enableChanChat
 
 		def initialize(*args)
 			super
-			@defaultnick = config[:defaultnick] || "cleverBot"
-			@prefixUse = true
-			@disabledChannels = Set.new
 			@cleverbot = Cleverbot::Client.new
 		end
 
-		def execute(m, message)
-			return if @disabledChannels.include?(m.channel) || !@bot.all_commands_enabled
-			if m.channel
-				msg_back = @cleverbot.write message
-				m.reply(msg_back, @prefixUse)
+		def execute(msg, query)
+			return unless (@bot.cleverbot_enabled || authenticated?(msg))
+			if msg.channel
+				response = @cleverbot.write query
+				msg.reply response, true
 			end
-		end
-
-		def disableChanChat(m, message)
-			return unless (@bot.all_commands_enabled || authenticated?(m))
-			if @disabledChannels.add?(m.channel) == nil
-				tosend = "CleverBot already disabled."
-			else
-				tosend = "CleverBot disabled."
-				@disabledChannels + ["#{m.channel}"]
-			end
-			m.reply(tosend, @prefixUse)
-		end
-
-		def enableChanChat(m, message)
-			return unless (@bot.all_commands_enabled || authenticated?(m))
-			if @disabledChannels.delete?(m.channel) == nil
-				tosend = "CleverBot already enabled."
-			else
-				tosend = "CleverBot enabled."
-				@disabledChannels - ["#{m.channel}"]
-			end
-			m.reply(tosend, @prefixUse)
 		end
 	end
 

@@ -17,7 +17,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 **Control commands**  
 _Restricted to users with voice or higher._  
 `!toysoff` / `!toyson` - Disable/enable the toys  
-`!disablechatter` / `!enablechatter` - Disable/enable the CleverBot interface.  
+`!chatteroff` / `!chatteron` - Disable/enable the CleverBot interface.  
 `!searchoff` / `!searchon` - Disable/enable search commands  
 `!dctvoff` / `!dctvon` - Disables diamondclub.tv commands  
 `!lockdown` / `!lockdownoff` - Disable/enable all commands in case of emergency  

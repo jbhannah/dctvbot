@@ -95,12 +95,13 @@ bot = Cinch::Bot.new do
 end
 
 class << bot
-  attr_accessor :announced, :official_live, :toys_enabled, :search_enabled,
-                :dctv_commands_enabled, :all_commands_enabled
+  attr_accessor :announced, :official_live, :toys_enabled, :cleverbot_enabled,
+                :search_enabled, :dctv_commands_enabled, :all_commands_enabled
 end
 bot.announced = Array.new
 bot.official_live = false
 bot.toys_enabled = true
+bot.cleverbot_enabled = true
 bot.search_enabled = true
 bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true

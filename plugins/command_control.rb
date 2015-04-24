@@ -18,6 +18,16 @@ module Plugins
       disable_command_set(msg, @bot.toys_enabled, "Toy commands")
     end
 
+    match /chatteron/i, method: :enable_cleverbot
+		def enable_cleverbot(msg)
+      enable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interface")
+		end
+
+    match /chatteroff/i, method: :disable_cleverbot
+    def disable_cleverbot(msg)
+      disable_command_set(msg, @bot.cleverbot_enabled, "Cleverbot interface")
+		end
+
     match /searchon/i, method: :enable_search
     def enable_search(msg)
       enable_command_set(msg, @bot.search_enabled, "Search commands")
@@ -42,6 +52,7 @@ module Plugins
     def lockdown(msg)
       if @bot.all_commands_enabled
         @bot.toys_enabled = false
+        @bot.cleverbot_enabled = false
         @bot.search_enabled = false
         @bot.dctv_commands_enabled = false
         @bot.all_commands_enabled = false
@@ -57,6 +68,7 @@ module Plugins
         msg.reply "Commands are already enabled"
       else
         @bot.toys_enabled = true
+        @bot.cleverbot_enabled = true
         @bot.search_enabled = true
         @bot.dctv_commands_enabled = true
         @bot.all_commands_enabled = true
