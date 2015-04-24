@@ -19,7 +19,7 @@ _Restricted to users with voice or higher._
 `!toysoff` / `!toyson` - Disable/enable the toys  
 `!chatteroff` / `!chatteron` - Disable/enable the CleverBot interface.  
 `!searchoff` / `!searchon` - Disable/enable search commands  
-`!dctvoff` / `!dctvon` - Disables diamondclub.tv commands  
+`!dctvoff` / `!dctvon` - Disable/enable diamondclub.tv commands  
 `!lockdown` / `!lockdownoff` - Disable/enable all commands in case of emergency  
 
 # Installation
@@ -33,7 +33,7 @@ bundle install
 ```bash
 cp config.sample.yml config.yml
 ```
-Then edit `config.yml` and fill in with desired details. If you want bot to identify itself, you must register the nick manually first.  
+Then edit `config.yml` and fill in with desired details. If you want bot to identify itself, you must first register the nick manually with the server.  
 
 # Usage
 ```bash
