@@ -12,6 +12,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 
 **Search commands**  
 `!google <term>` - Returns the top hit on google for <term>.  
+`!wikipedia <term>` - Searches wikipedia for <term>  
 `!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
 
 **Control commands**  

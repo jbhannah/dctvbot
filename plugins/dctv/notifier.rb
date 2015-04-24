@@ -25,7 +25,7 @@ module Plugins
             channel = stream["Channel"]
             channelLink = "http://diamondclub.tv/##{channel}"
             live = Format(:white, :red, " LIVE ")
-            Channel(@bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink}"))
+            Channel(@bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink} "))
             @bot.announced << id
             @bot.official_live = true if stream["Channel"] = "1"
           elsif stream["Channel"] == "0" && @bot.announced.include?(id)

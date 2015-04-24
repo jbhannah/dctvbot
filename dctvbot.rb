@@ -19,6 +19,7 @@ require_relative 'plugins/cleverbotredux'
 require_relative 'plugins/command_control'
 require_relative 'plugins/google'
 require_relative 'plugins/help'
+require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
@@ -64,6 +65,7 @@ bot = Cinch::Bot.new do
       Plugins::CommandControl,
       Plugins::Google,
       Plugins::Help,
+      Plugins::Wikipedia,
       Plugins::Wolfram,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::Status,
@@ -78,8 +80,8 @@ bot = Cinch::Bot.new do
 
     c.plugins.options = {
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
-      Plugins::CleverBotRedux => { defaultnick: c.nick },
-      Plugins::Wolfram => { :api_id => config['plugins']['wolfram']['api'] }
+      Plugins::Wikipedia => { max_length: 300 },
+      Plugins::Wolfram => { api_id: config['plugins']['wolfram']['api'] }
     }
   end
 
