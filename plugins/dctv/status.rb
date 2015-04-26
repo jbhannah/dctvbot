@@ -40,7 +40,8 @@ HELP
         else
           entry = entries[0]
         end
-        msg.reply "Next scheduled show: #{entry["title"]} (#{timeUntil(entry["time"])})"
+        title = CGI.unescape_html entry["title"]
+        msg.reply "Next scheduled show: #{title} (#{timeUntil(entry["time"])})"
       end
 
       match /schedule/, method: :schedule
@@ -50,7 +51,8 @@ HELP
         msg.reply "Here are the scheduled shows for the next 48 hours:"
         entries.each do |entry|
           if entry["time"] - 48.hours < Time.new
-            msg.reply "#{entry["title"]} - #{timeIsLink(entry["time"], true)}"
+            title = CGI.unescape_html entry["title"]
+            msg.reply "#{title} - #{timeIsLink(entry["time"], true)}"
           end
         end
       end
