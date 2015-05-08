@@ -16,12 +16,20 @@ module Plugins
     end
 
     def search(query)
-      wolfram = WolframAlpha::Client.new config[:api_id], options = { :timeout => 1 }
+      wolfram = WolframAlpha::Client.new(config[:api_id], options = { :timeout => 15 })
       response = wolfram.query query
       input = response["Input"] # Get the input interpretation pod.
-      result = response.find { |pod| pod.title == "Result" } # Get the result pod.
+      result = response.find { |pod| pod.title == "Result" }
+      result = response.find { |pod| pod.title == "Results" } unless result
+      result = response.find { |pod| pod.title == "Basic information" } unless result
+      result = response.find { |pod| pod.title == "Decimal approximation" } unless result
+      result = response.find { |pod| pod.title == "Properties" } unless result
       if result
-        "#{input.subpods[0].plaintext}\n#{result.subpods[0].plaintext}"
+        output = "#{input.subpods[0].plaintext}"
+        result.subpods.each do |subpod|
+          output += "\n#{subpod.plaintext}"
+        end
+        output
       else
         "Sorry, I've no idea"
       end
