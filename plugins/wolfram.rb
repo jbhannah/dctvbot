@@ -24,6 +24,9 @@ module Plugins
       result = response.find { |pod| pod.title == "Basic information" } unless result
       result = response.find { |pod| pod.title == "Decimal approximation" } unless result
       result = response.find { |pod| pod.title == "Properties" } unless result
+      result = response.find { |pod| pod.title == "Value" } unless result
+      result = response.find { |pod| pod.title == "Definitions" } unless result
+      result = response.find { |pod| pod.title == "Demographics" } unless result
       if result
         output = "#{input.subpods[0].plaintext}"
         result.subpods.each do |subpod|
