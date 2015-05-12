@@ -12,7 +12,8 @@ module Plugins
 
     def execute(msg, query)
       return unless (@bot.search_enabled || authenticated?(msg))
-      msg.reply(search(query))
+      # msg.reply search(query)
+      m.user.send search(query)
     end
 
     def search(query)
