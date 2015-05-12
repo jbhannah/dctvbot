@@ -56,23 +56,23 @@ module Plugins
         @bot.search_enabled = false
         @bot.dctv_commands_enabled = false
         @bot.all_commands_enabled = false
-        msg.reply "All commands disabled"
+        msg.user.notice "All commands disabled"
       else
-        msg.reply "Commands are already disabled"
+        msg.user.notice "Commands are already disabled"
       end
     end
 
     match /lockdownoff/i, method: :lockdown_off
     def lockdown_off(msg)
       if @bot.all_commands_enabled
-        msg.reply "Commands are already enabled"
+        msg.user.notice "Commands are already enabled"
       else
         @bot.toys_enabled = true
         @bot.cleverbot_enabled = true
         @bot.search_enabled = true
         @bot.dctv_commands_enabled = true
         @bot.all_commands_enabled = true
-        msg.reply "All commands enabled"
+        msg.user.notice "All commands enabled"
       end
     end
 
@@ -84,9 +84,9 @@ module Plugins
           return
         end
         if command_set_boolean
-          msg.reply "#{command_set_name} have been disabled"
+          msg.user.notice "#{command_set_name} have been disabled"
         else
-          msg.reply "#{command_set_name} are already disabled"
+          msg.user.notice "#{command_set_name} are already disabled"
         end
         return false
       end
@@ -97,9 +97,9 @@ module Plugins
           return
         end
         if command_set_boolean
-          msg.reply "#{command_set_name} are already enabled"
+          msg.user.notice "#{command_set_name} are already enabled"
         else
-          msg.reply "#{command_set_name} have been enabled"
+          msg.user.notice "#{command_set_name} have been enabled"
         end
         return true
       end
