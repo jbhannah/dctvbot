@@ -22,12 +22,12 @@ HELP
         onCount = 0
         apiResult.each do |result|
           unless result["Channel"] == "0"
-            msg.user.notice "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
+            msg.user.send "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
             onCount += 1
           end
         end
         if onCount == 0
-          msg.user.notice "Nothing is currently live"
+          msg.user.send "Nothing is currently live"
         end
       end
 
