@@ -71,10 +71,10 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Boiled,
       Plugins::DCTV::Toys::Flip,
-      Plugins::DCTV::Toys::InigoMontoya,
-      Plugins::DCTV::Toys::MitchHedberg,
+      # Plugins::DCTV::Toys::InigoMontoya,
+      # Plugins::DCTV::Toys::MitchHedberg,
       Plugins::DCTV::Toys::Preshow,
-      Plugins::DCTV::Toys::Tumbleweed,
+      # Plugins::DCTV::Toys::Tumbleweed,
       Plugins::DCTV::Toys::Ready
     ]
 
