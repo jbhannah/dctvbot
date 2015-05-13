@@ -18,7 +18,7 @@ module Plugins
 
     def execute(m, term)
       return unless (@bot.search_enabled || authenticated?(m))
-      m.user.send wiki(term)
+      m.reply wiki(term)
     end
 
     private

@@ -13,7 +13,7 @@ module Plugins
 
     def execute(m, query)
       return unless (@bot.search_enabled || authenticated?(msg))
-      m.user.send search(query)
+      m.reply search(query)
     end
 
     def search(query)
@@ -26,13 +26,10 @@ module Plugins
       result = response.pods[1] unless result
       if result
         output = "#{input.subpods[0].plaintext}"
-        # i = 0
         result.subpods.each do |subpod|
           output += "\n#{subpod.plaintext}"
-          # i += 1
-          # break if i > 5
         end
-        # output = Cinch::Toolbox.truncate(output, 300).strip
+        output = Cinch::Toolbox.truncate(output, 300)
         output += "\nMore Info: https://www.wolframalpha.com/input/?i=#{query.gsub(" ","+")}"
       else
         "Sorry, I've no idea. Does this help? https://www.wolframalpha.com/input/?i=#{query.gsub(" ","+")}"
