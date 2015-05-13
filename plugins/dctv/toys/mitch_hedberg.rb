@@ -10,14 +10,14 @@ module Plugins
 
         match /hedberg/
 
-        def execute(msg)
-          return unless (@bot.toys_enabled || authenticated?(msg))
+        def execute(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
           url = "http://en.wikiquote.org/wiki/Mitch_Hedberg"
           document = Nokogiri::HTML(open(url), nil, 'utf-8')
           quotes = document.css('li')
           quotes = clean_non_quotes(quotes.to_a)
           quote = quotes[rand 0..quotes.length].content.strip
-          msg.reply quote
+          m.reply quote
         end
 
         private

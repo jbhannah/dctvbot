@@ -14,11 +14,11 @@ module Plugins
 			@cleverbot = Cleverbot::Client.new
 		end
 
-		def execute(msg, query)
-			return unless (@bot.cleverbot_enabled || authenticated?(msg))
-			if msg.channel
+		def execute(m, query)
+			return unless (@bot.cleverbot_enabled || authenticated?(m))
+			if m.channel
 				response = @cleverbot.write query
-				msg.reply response, true
+				m.reply response, true
 			end
 		end
 	end

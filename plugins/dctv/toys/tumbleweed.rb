@@ -10,9 +10,9 @@ module Plugins
 
         match /tumbleweed/
 
-        def execute(msg)
-          return unless (@bot.toys_enabled || authenticated?(msg))
-          msg.reply("~...~...¤")
+        def execute(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
+          m.reply("~...~...¤")
         end
       end
 

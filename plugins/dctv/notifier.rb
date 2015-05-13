@@ -9,7 +9,7 @@ module Plugins
 
       listen_to :checkdctv
 
-      def listen(msg)
+      def listen(m)
         statuses = dctvApiJson
         if @bot.official_live
           official_check = false

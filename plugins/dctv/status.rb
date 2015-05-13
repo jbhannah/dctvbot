@@ -16,24 +16,24 @@ module Plugins
 HELP
 
       match /now/, method: :now
-      def now(msg)
-        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
+      def now(m)
+        return unless (@bot.dctv_commands_enabled || authenticated?(m))
         apiResult = dctvApiJson
         onCount = 0
         apiResult.each do |result|
           unless result["Channel"] == "0"
-            msg.user.notice "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
+            m.user.notice "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
             onCount += 1
           end
         end
         if onCount == 0
-          msg.user.notice "Nothing is currently live"
+          m.user.notice "Nothing is currently live"
         end
       end
 
       match /next/, method: :next
-      def next(msg)
-        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
+      def next(m)
+        return unless (@bot.dctv_commands_enabled || authenticated?(m))
         entries = getCalendarEntries(2)
         if entries[0]["time"] < Time.new
           entry = entries[1]
@@ -41,19 +41,19 @@ HELP
           entry = entries[0]
         end
         title = CGI.unescape_html entry["title"]
-        msg.reply "Next scheduled show: #{title} (#{timeUntil(entry["time"])})"
+        m.reply "Next scheduled show: #{title} (#{timeUntil(entry["time"])})"
 
       end
 
       match /schedule/, method: :schedule
-      def schedule(msg)
-        return unless (@bot.dctv_commands_enabled || authenticated?(msg))
+      def schedule(m)
+        return unless (@bot.dctv_commands_enabled || authenticated?(m))
         entries = getCalendarEntries
-        msg.user.notice "Here are the scheduled shows for the next 48 hours:"
+        m.user.notice "Here are the scheduled shows for the next 48 hours:"
         entries.each do |entry|
           if entry["time"] - 48.hours < Time.new
             title = CGI.unescape_html entry["title"]
-            msg.user.notice "#{title} - #{timeIsLink(entry["time"], true)}"
+            m.user.notice "#{title} - #{timeIsLink(entry["time"], true)}"
           end
         end
       end

@@ -10,9 +10,9 @@ module Plugins
 
     match /google (.+)/
 
-    def execute(msg, query)
-      return unless (@bot.search_enabled || authenticated?(msg))
-      msg.user.send search(query)
+    def execute(m, query)
+      return unless (@bot.search_enabled || authenticated?(m))
+      m.user.send search(query)
     end
 
     def search(query)
