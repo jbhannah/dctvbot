@@ -23,13 +23,10 @@ require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/status'
-require_relative 'plugins/dctv/toys/boiled'
 require_relative 'plugins/dctv/toys/flip'
-require_relative 'plugins/dctv/toys/inigo_montoya'
+require_relative 'plugins/dctv/toys/keywords'
 require_relative 'plugins/dctv/toys/mitch_hedberg'
-require_relative 'plugins/dctv/toys/preshow'
 require_relative 'plugins/dctv/toys/tumbleweed'
-require_relative 'plugins/dctv/toys/ready'
 
 # Other classes
 require_relative 'plugins/dctv/watcher'
@@ -69,13 +66,10 @@ bot = Cinch::Bot.new do
       Plugins::Wolfram,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::Status,
-      Plugins::DCTV::Toys::Boiled,
       Plugins::DCTV::Toys::Flip,
-      # Plugins::DCTV::Toys::InigoMontoya,
-      # Plugins::DCTV::Toys::MitchHedberg,
-      Plugins::DCTV::Toys::Preshow,
-      # Plugins::DCTV::Toys::Tumbleweed,
-      Plugins::DCTV::Toys::Ready
+      Plugins::DCTV::Toys::Keywords,
+      Plugins::DCTV::Toys::MitchHedberg,
+      Plugins::DCTV::Toys::Tumbleweed
     ]
 
     c.plugins.options = {
@@ -107,6 +101,7 @@ bot.cleverbot_enabled = true
 bot.search_enabled = true
 bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true
+
 results = dctvApiJson
 results.each do |result|
   bot.official_live = true if result["Channel"] == "1"
