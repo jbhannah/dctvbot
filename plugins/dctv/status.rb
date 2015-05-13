@@ -45,16 +45,21 @@ HELP
 
       end
 
-      match /schedule/, method: :schedule
-      def schedule(m)
+      match /schedule\s?(v?)/, method: :schedule
+      def schedule(m, flag=nil)
         return unless (@bot.dctv_commands_enabled || authenticated?(m))
         entries = getCalendarEntries
-        m.user.notice "Here are the scheduled shows for the next 48 hours:"
+        output =  "Here are the scheduled shows for the next 48 hours:"
         entries.each do |entry|
           if entry["time"] - 48.hours < Time.new
             title = CGI.unescape_html entry["title"]
-            m.user.notice "#{title} - #{timeIsLink(entry["time"], true)}"
+            output += "\n#{title} - #{timeIsLink(entry["time"], true)}"
           end
+        end
+        if flag == "v" && authenticated?(m)
+          m.reply output
+        else
+          m.user.notice output
         end
       end
     end
