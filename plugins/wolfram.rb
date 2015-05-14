@@ -20,10 +20,10 @@ module Plugins
       wolfram = WolframAlpha::Client.new(config[:api_id], options = { :timeout => 30 })
       response = wolfram.query query
       input = response["Input"] # Get the input interpretation pod.
-      result = response.find { |pod| pod.title == "Result" }
+      # result = response.find { |pod| pod.title == "Result" }
       # possible titles (partial): Results, Basic information, Basic Properties,
       #      Decimal approximation, Properties, Value, Definitions, Demographics
-      result = response.pods[1] unless result
+      result = response.pods[1] # unless result
       if result
         output = "#{input.subpods[0].plaintext}"
         result.subpods.each do |subpod|
