@@ -24,13 +24,15 @@ module Plugins
       # possible titles (partial): Results, Basic information, Basic Properties,
       #      Decimal approximation, Properties, Value, Definitions, Demographics
       result = response.pods[1] # unless result
+      output = ""
       if result
-        output = "#{input.subpods[0].plaintext}"
         result.subpods.each do |subpod|
-          output += "\n#{subpod.plaintext}"
+          output += "#{subpod.plaintext} "
         end
-        output = Cinch::Toolbox.truncate(output, 300)
-        output += "\nMore Info: https://www.wolframalpha.com/input/?i=#{query.gsub(" ","+")}"
+        output = Cinch::Toolbox.truncate(output.strip, 300)
+        reply = "#{input.subpods[0].plaintext}\n"
+        reply += output.gsub("  ", " ][ ")
+        reply += "\nMore Info: https://www.wolframalpha.com/input/?i=#{query.gsub(" ","+")}"
       else
         "Sorry, I've no idea. Does this help? https://www.wolframalpha.com/input/?i=#{query.gsub(" ","+")}"
       end
