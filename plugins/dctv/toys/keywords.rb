@@ -37,6 +37,12 @@ module Plugins
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'I was ' + Format(:bold, 'BORN') + ' ready!'
         end
+
+        match /pa{3,}nts/i, use_prefix: false, method: :pants
+        def pants(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
+          m.reply 'skirr'
+        end
       end
 
     end

@@ -4,7 +4,7 @@ require 'bundler/setup'
 Bundler.require
 
 require 'cgi'
-require 'httparty'
+# require 'httparty'
 require 'net/http'
 require 'open-uri'
 require 'rexml/document'
@@ -22,6 +22,7 @@ require_relative 'plugins/google'
 require_relative 'plugins/help'
 require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
+require_relative 'plugins/dctv/join_message.rb'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/secondscreen'
 require_relative 'plugins/dctv/status'
@@ -39,7 +40,7 @@ include Helpers::BotHelpers
 
 # Other includes
 include REXML
-include HTTParty
+# include HTTParty
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -67,6 +68,7 @@ bot = Cinch::Bot.new do
       Plugins::Help,
       Plugins::Wikipedia,
       Plugins::Wolfram,
+      Plugins::DCTV::JoinMessage,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::SecondScreen,
       Plugins::DCTV::Status,
