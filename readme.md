@@ -11,12 +11,12 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!schedule [v]` - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v flag to have it show in main chat.  
 
 _Restricted to users with voice or higher._  
-`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to <url>  
+`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`.  
 
 **Search commands**  
-`!google <term>` - Returns the top hit on google for <term>.  
-`!wikipedia <term>` - Searches wikipedia for <term>.  
-`!wolfram <query>` - Attempts to answer your <query> using Wolfram Alpha.  
+`!google <term>` - Returns the top hit on google for `<term>`.  
+`!wikipedia <term>` - Searches wikipedia for `<term>`.  
+`!wolfram <query>` - Attempts to answer your `<query>` using Wolfram Alpha.  
 
 **Control commands**  
 _Restricted to users with voice or higher._  
