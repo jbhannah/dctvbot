@@ -24,6 +24,7 @@ require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/secondscreen'
+require_relative 'plugins/dctv/secondscreenrec'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/flip'
 require_relative 'plugins/dctv/toys/keywords'
@@ -69,6 +70,7 @@ bot = Cinch::Bot.new do
       Plugins::Wolfram,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::SecondScreen,
+      Plugins::DCTV::SecondScreenRec,
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Flip,
       Plugins::DCTV::Toys::Keywords,
