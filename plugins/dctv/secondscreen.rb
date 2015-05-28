@@ -19,7 +19,14 @@ module Plugins
           return
         end
 
+        if url == "clear" && @bot.record_second_screen
+          # Clear second screen recording
+          @bot.recorded_second_screen_list.clear
+          return
+        end
+
         if @bot.record_second_screen
+          # Push new link onto second screen recording
           @bot.recorded_second_screen_list.push(url)
         end
 
