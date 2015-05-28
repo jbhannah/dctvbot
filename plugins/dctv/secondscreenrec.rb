@@ -12,6 +12,7 @@ module Plugins
       match /secsrec on/, method: :on
       def on(m)
         @bot.record_second_screen = true
+        @bot.recorded_second_screen_list.clear
 
         m.user.notice "Second Screen Recording enabled"
       end
@@ -19,6 +20,7 @@ module Plugins
       match /secsrec off/, method: :off
       def off(m)
         @bot.record_second_screen = false
+        @bot.recorded_second_screen_list.clear
 
         m.user.notice "Second Screen Recording disabled"
       end
