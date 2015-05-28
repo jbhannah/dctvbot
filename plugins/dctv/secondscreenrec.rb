@@ -47,6 +47,8 @@ module Plugins
         res = Net::HTTP.post_form(url, params)
 
         m.reply res.body
+
+        list.clear
       end
     end
 
