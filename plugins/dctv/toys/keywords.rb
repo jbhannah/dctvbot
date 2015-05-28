@@ -32,7 +32,7 @@ module Plugins
           m.reply("No.", true)
         end
 
-        match /you ready?/i, use_prefix: false, method: :ready
+        match /you ready\?/i, use_prefix: false, method: :ready
         def ready(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'I was ' + Format(:bold, 'BORN') + ' ready!'
