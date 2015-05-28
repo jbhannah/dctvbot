@@ -29,6 +29,8 @@ module Plugins
       def publish(m)
         list = @bot.recorded_second_screen_list
 
+        return if (list.empty?)
+
         url = URI.parse("http://pastebin.com/api/api_post.php")
 
         str = ""
