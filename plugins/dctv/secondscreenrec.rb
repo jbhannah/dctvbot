@@ -24,6 +24,28 @@ module Plugins
 
         m.user.notice "Second Screen Recording disabled"
       end
+
+      match /secsrec publish/, method: :publish
+      def publish(m)
+        list = @bot.recorded_second_screen_list
+
+        url = URI.parse("http://pastebin.com/api/api_post.php")
+
+        str = ""
+        list.each do |link|
+          str += "#{link}\n"
+        end
+
+        params = {
+          "api_dev_key" => config[:pastebin_api_key],
+          "api_option" => "paste", # Specifies creation
+          "api_paste_code" => str
+        }
+
+        res = Net::HTTP.post_form(url, params)
+
+        m.reply res.body
+      end
     end
 
   end
