@@ -11,7 +11,7 @@ module Plugins
         return unless m.user.nick == "jenniej23"
         @message_timer = Timer(60) do
           current_time = Time.now.in_time_zone('US/Pacific')
-          return unless current_time.hour > 12 && current_time.hour < 3
+          break unless current_time.hour > 12 && current_time.hour < 3
           m.user.send "Have you tweeted about DTNS and given beatmaster the links?"
         end
       end
