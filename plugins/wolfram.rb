@@ -17,7 +17,7 @@ module Plugins
     end
 
     def search(query)
-      wolfram = WolframAlpha::Client.new(config[:api_id], options = { :timeout => 30 })
+      wolfram = WolframAlpha::Client.new(config[:wolfram_api_key], options = { :timeout => 30 })
       response = wolfram.query query
       input = response["Input"] # Get the input interpretation pod.
       # result = response.find { |pod| pod.title == "Result" }

@@ -79,7 +79,7 @@ bot = Cinch::Bot.new do
     c.plugins.options = {
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
       Plugins::Wikipedia => { max_length: 300 },
-      Plugins::Wolfram => { api_id: config['plugins']['wolfram']['api'] }
+      Plugins::Wolfram => { wolfram_api_key: config['plugins']['wolfram']['api'] },
     }
   end
 
