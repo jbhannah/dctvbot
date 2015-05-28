@@ -82,6 +82,7 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
       Plugins::Wikipedia => { max_length: 300 },
       Plugins::Wolfram => { wolfram_api_key: config['plugins']['wolfram']['api'] },
+      Plugins::DCTV::SecondScreenRec => { pastebin_api_key: config['plugins']['pastebin']['api'] }
     }
   end
 
