@@ -4,7 +4,6 @@ require 'bundler/setup'
 Bundler.require
 
 require 'cgi'
-# require 'httparty'
 require 'net/http'
 require 'open-uri'
 require 'rexml/document'
@@ -24,6 +23,7 @@ require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/join_message.rb'
 require_relative 'plugins/dctv/notifier'
+require_relative 'plugins/dctv/pester_jennie'
 require_relative 'plugins/dctv/secondscreen'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/flip'
@@ -40,7 +40,6 @@ include Helpers::BotHelpers
 
 # Other includes
 include REXML
-# include HTTParty
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -70,6 +69,7 @@ bot = Cinch::Bot.new do
       Plugins::Wolfram,
       Plugins::DCTV::JoinMessage,
       Plugins::DCTV::Notifier,
+      Plugins::DCTV::PesterJennie,
       Plugins::DCTV::SecondScreen,
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Flip,
