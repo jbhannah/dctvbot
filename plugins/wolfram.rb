@@ -21,8 +21,6 @@ module Plugins
       response = wolfram.query query
       input = response["Input"] # Get the input interpretation pod.
       # result = response.find { |pod| pod.title == "Result" }
-      # possible titles (partial): Results, Basic information, Basic Properties,
-      #      Decimal approximation, Properties, Value, Definitions, Demographics
       result = response.pods[1] # unless result
       output = ""
       if result
