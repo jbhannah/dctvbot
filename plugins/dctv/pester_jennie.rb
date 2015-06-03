@@ -11,11 +11,11 @@ module Plugins
         current_time = Time.now.in_time_zone('US/Pacific')
         return unless m.user.nick == "jenniej23"
         @message_timer = Timer(60) do
-          if (current_time.hour <= 11 || current_time.hour >= 2) && @message_timer.started
+          if (current_time.hour <= 10 || current_time.hour >= 14) && @message_timer.started
             @message_timer.stop
             next
           end
-          next unless current_time.hour >= 12 && current_time.hour <= 2
+          next unless current_time.hour >= 12 && current_time.hour <= 14
           m.user.send "Have you tweeted about DTNS and given beatmaster the links?"
         end
         @message_timer.start
