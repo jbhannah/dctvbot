@@ -52,6 +52,7 @@ module Plugins
 
         match /.+\.pizza/i, use_prefix: false, method: :pizza
         def pizza(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'PIZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
         end
       end
