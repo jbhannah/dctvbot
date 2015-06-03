@@ -13,6 +13,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 _Restricted to users with voice or higher._  
 `!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`.  
 `!setjoin [on|off|<message>]` - Turns on/off or sets a user notice for channel join  
+`!secsrec [on|off|publish]` - Enables/disables Second Screen recording or publishes to recorded links to Pastebin
 
 **Search commands**  
 `!google <term>` - Returns the top hit on google for `<term>`.  

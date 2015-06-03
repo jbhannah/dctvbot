@@ -25,6 +25,7 @@ require_relative 'plugins/dctv/join_message.rb'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/pester_jennie'
 require_relative 'plugins/dctv/secondscreen'
+require_relative 'plugins/dctv/secondscreenrec'
 require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/flip'
 require_relative 'plugins/dctv/toys/keywords'
@@ -71,6 +72,7 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Notifier,
       Plugins::DCTV::PesterJennie,
       Plugins::DCTV::SecondScreen,
+      Plugins::DCTV::SecondScreenRec,
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Flip,
       Plugins::DCTV::Toys::Keywords,
@@ -81,7 +83,8 @@ bot = Cinch::Bot.new do
     c.plugins.options = {
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
       Plugins::Wikipedia => { max_length: 300 },
-      Plugins::Wolfram => { api_id: config['plugins']['wolfram']['api'] }
+      Plugins::Wolfram => { wolfram_api_key: config['plugins']['wolfram']['api'] },
+      Plugins::DCTV::SecondScreenRec => { pastebin_api_key: config['plugins']['pastebin']['api'] }
     }
   end
 
@@ -98,7 +101,8 @@ end
 
 class << bot
   attr_accessor :announced, :official_live, :toys_enabled, :cleverbot_enabled,
-                :search_enabled, :dctv_commands_enabled, :all_commands_enabled
+                :search_enabled, :dctv_commands_enabled, :all_commands_enabled,
+                :record_second_screen, :recorded_second_screen_list
 end
 bot.announced = Array.new
 bot.official_live = false
@@ -107,6 +111,9 @@ bot.cleverbot_enabled = true
 bot.search_enabled = true
 bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true
+
+bot.record_second_screen = false
+bot.recorded_second_screen_list = Array.new
 
 results = dctvApiJson
 results.each do |result|

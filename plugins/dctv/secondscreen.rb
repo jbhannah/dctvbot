@@ -12,6 +12,24 @@ module Plugins
       match /secs (.+)/
 
       def execute(m, url)
+        if url == "off" && @bot.record_second_screen
+          # Disable second screen recording
+          @bot.record_second_screen = false
+          @bot.recorded_second_screen_list.clear
+          return
+        end
+
+        if url == "clear" && @bot.record_second_screen
+          # Clear second screen recording
+          @bot.recorded_second_screen_list.clear
+          return
+        end
+
+        if @bot.record_second_screen
+          # Push new link onto second screen recording
+          @bot.recorded_second_screen_list.push(url)
+        end
+
         response = HTTParty.get("http://diamondclub.tv/api/secondscreen.php?url=#{url}&pro=4938827&user=#{m.user.nick}")
         m.user.notice "Command Sent. Response: #{response}"
       end
