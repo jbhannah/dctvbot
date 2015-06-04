@@ -12,7 +12,7 @@ module Plugins
     match /wolfram (.+)/
 
     def execute(m, query)
-      return unless (@bot.search_enabled || authenticated?(msg))
+      return unless (@bot.search_enabled || authenticated?(m))
       m.reply search(query)
     end
 
