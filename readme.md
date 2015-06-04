@@ -44,12 +44,3 @@ Then edit `config.yml` and fill in with desired details. If you want bot to iden
 ```bash
 ruby dctvbot.rb
 ```
-
-# Heroku Setup
-```bash
-heroku create
-git push heroku master
-heroku scale web=0
-heroku scale bot=1
-```
-`Procfile` will be read by Heroku and used to start the script.
