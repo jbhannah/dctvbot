@@ -8,7 +8,7 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        match /hedberg/
+        match /hedberg/, group: :toys
 
         def execute(m)
           return unless (@bot.toys_enabled || authenticated?(m))

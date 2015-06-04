@@ -8,52 +8,52 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        match /#boiled/, use_prefix: false, method: :boiled
+        match /#boiled/, group: :toys, use_prefix: false, method: :boiled
         def boiled(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply Format(:bold, :white, :red, ' BBBBBOOOOOIIILLLED!! ')
         end
 
-        match /inconceivable/i, use_prefix: false, method: :inconceivable
-        def inconceivable(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'You keep using that word. I do not think it means what you think it means.'
-        end
-
-        match /(inigo|montoya)/i, use_prefix: false, method: :inigomontoya
-        def inigomontoya(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'Hello. My name is Inigo Montoya. You killed my father. Prepare to die.'
-        end
-
-        match /pre[\-\s]?show\?/i, use_prefix: false, method: :preshow
+        match /pre[\-\s]?show\?/i, group: :toys, use_prefix: false, method: :preshow
         def preshow(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'No.', true
         end
 
-        match /you ready\?/i, use_prefix: false, method: :ready
+        match /you ready\?/i, group: :toys, use_prefix: false, method: :ready
         def ready(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'I was ' + Format(:bold, 'BORN') + ' ready!'
         end
 
-        match /pa{3,}nts/i, use_prefix: false, method: :pants
+        match /pa{3,}nts/i, group: :toys, use_prefix: false, method: :pants
         def pants(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'skirr'
         end
 
-        match /anthony carboni/i, use_prefix: false, method: :carboni
+        match /anthony carboni/i, group: :toys, use_prefix: false, method: :carboni
         def carboni(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'oooOOOOoooOOooo'
         end
 
-        match /.+\.pizza/i, use_prefix: false, method: :pizza
+        match /.+\.pizza/i, group: :toys, use_prefix: false, method: :pizza
         def pizza(m)
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'PIZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+        end
+
+        match /inconceivable/i, group: :toys, use_prefix: false, method: :inconceivable
+        def inconceivable(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
+          m.reply 'You keep using that word. I do not think it means what you think it means.'
+        end
+
+        match /inigo montoya/i, group: :toys, use_prefix: false, method: :inigomontoya
+        def inigomontoya(m)
+          return unless (@bot.toys_enabled || authenticated?(m))
+          m.reply 'Hello. My name is Inigo Montoya. You killed my father. Prepare to die.'
         end
       end
 

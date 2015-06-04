@@ -8,7 +8,7 @@ module Plugins
         include Cinch::Plugin
         include Cinch::Extensions::Authentication
 
-        match /flip\s?(.*)/, method: :flip
+        match /flip\s?(.*)/, group: :toys, method: :flip
         def flip(m, word=nil)
           return unless (@bot.toys_enabled || authenticated?(m))
           if word == nil || word.blank? || word =~ /table/i
@@ -19,7 +19,7 @@ module Plugins
           m.reply("(╯°□°)╯︵ #{word}")
         end
 
-        match /unflip\s?(.*)/, method: :unflip
+        match /unflip\s?(.*)/, group: :toys, method: :unflip
         def unflip(m, word=nil)
           return unless (@bot.toys_enabled || authenticated?(m))
           if word == nil || word.blank? || word =~ /table/i
