@@ -8,100 +8,58 @@ module Plugins
 
     enable_authentication
 
-    match /toyson/i, method: :enable_toys
-    def enable_toys(m)
-      @bot.toys_enabled = enable_command_set(m, @bot.toys_enabled, "Toy commands")
-    end
+    match /turn (.+) (.+)/
 
-    match /toysoff/i, method: :disable_toys
-    def disable_toys(m)
-      @bot.toys_enabled = disable_command_set(m, @bot.toys_enabled, "Toy commands")
-    end
-
-    match /chatteron/i, method: :enable_cleverbot
-		def enable_cleverbot(m)
-      @bot.cleverbot_enabled = enable_command_set(m, @bot.cleverbot_enabled, "Cleverbot interfaces")
-		end
-
-    match /chatteroff/i, method: :disable_cleverbot
-    def disable_cleverbot(m)
-      @bot.cleverbot_enabled = disable_command_set(m, @bot.cleverbot_enabled, "Cleverbot interfaces")
-		end
-
-    match /searchon/i, method: :enable_search
-    def enable_search(m)
-      @bot.search_enabled = enable_command_set(m, @bot.search_enabled, "Search commands")
-    end
-
-    match /searchoff/i, method: :disable_search
-    def disable_search(m)
-      @bot.search_enabled = disable_command_set(m, @bot.search_enabled, "Search commands")
-    end
-
-    match /dctvon/i, method: :enable_dctv
-    def enable_dctv(m)
-      @bot.dctv_commands_enabled = enable_command_set(m, @bot.dctv_commands_enabled, "DCTV commands")
-    end
-
-    match /dctvoff/i, method: :disable_dctv
-    def disable_dctv(m)
-      @bot.dctv_commands_enabled = disable_command_set(m, @bot.dctv_commands_enabled, "DCTV commands")
-    end
-
-    match /lockdown$/i, method: :lockdown
-    def lockdown(m)
-      if @bot.all_commands_enabled
-        @bot.toys_enabled = false
-        @bot.cleverbot_enabled = false
-        @bot.search_enabled = false
-        @bot.dctv_commands_enabled = false
-        @bot.all_commands_enabled = false
-        m.user.notice "All commands disabled"
+    def execute(m, group, action)
+      failed = false
+      case action
+      when "on"
+        @turn_off = false
+      when "off"
+        @turn_off = true
       else
-        m.user.notice "Commands are already disabled"
+        failed = true
       end
-    end
 
-    match /lockdownoff/i, method: :lockdown_off
-    def lockdown_off(m)
-      if @bot.all_commands_enabled
-        m.user.notice "Commands are already enabled"
+      case group
+      when "toys"
+        @bot.toys_enabled = toggle_command_set(m, "Toy commands", @bot.toys_enabled)
+      when "cleverbot", "chatter"
+        @bot.cleverbot_enabled = toggle_command_set(m, "Cleverbot interfaces", @bot.cleverbot_enabled)
+      when "search"
+        @bot.search_enabled = toggle_command_set(m, "Search commands", @bot.search_enabled)
+      when "dctv"
+        @bot.dctv_commands_enabled = toggle_command_set(m, "DCTV commands", @bot.dctv_commands_enabled)
+      when "all"
+        @bot.toys_enabled = toggle_command_set(m, "Toy commands", @bot.toys_enabled)
+        @bot.cleverbot_enabled = toggle_command_set(m, "Cleverbot interfaces", @bot.cleverbot_enabled)
+        @bot.search_enabled = toggle_command_set(m, "Search commands", @bot.search_enabled)
+        @bot.dctv_commands_enabled = toggle_command_set(m, "DCTV commands", @bot.dctv_commands_enabled)
       else
-        @bot.toys_enabled = true
-        @bot.cleverbot_enabled = true
-        @bot.search_enabled = true
-        @bot.dctv_commands_enabled = true
-        @bot.all_commands_enabled = true
-        m.user.notice "All commands enabled"
+        failed = true
       end
+
+      m.user.notice "Sorry, I don't know how to turn #{group} #{action}" if failed
     end
 
     private
 
-      def disable_command_set(m, command_set_boolean, command_set_name)
-        unless @bot.all_commands_enabled
-          m.user.notice "All commands are currently disabled"
-          return
-        end
-        if command_set_boolean
-          m.user.notice "#{command_set_name} have been disabled"
+      def toggle_command_set(m, command_set_name, command_boolean_variable)
+        if @turn_off
+          if command_boolean_variable
+            m.user.notice "#{command_set_name} have been disabled"
+          else
+            m.user.notice "#{command_set_name} are already disabled"
+          end
+          return false
         else
-          m.user.notice "#{command_set_name} are already disabled"
+          if command_boolean_variable
+            m.user.notice "#{command_set_name} are already enabled"
+          else
+            m.user.notice "#{command_set_name} have been enabled"
+          end
+          return true
         end
-        return false
-      end
-
-      def enable_command_set(m, command_set_boolean, command_set_name)
-        unless @bot.all_commands_enabled
-          m.user.notice "All commands are currently disabled"
-          return
-        end
-        if command_set_boolean
-          m.user.notice "#{command_set_name} are already enabled"
-        else
-          m.user.notice "#{command_set_name} have been enabled"
-        end
-        return true
       end
   end
 

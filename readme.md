@@ -11,7 +11,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!schedule [v]` - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v flag to have it show in main chat.  
 
 _Restricted to users with voice or higher._  
-`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off`.    
+`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off`.
 `!setjoin [on|off|<message>]` - Turns on/off or sets a user notice for channel join  
 
 **Search commands**  
@@ -21,11 +21,7 @@ _Restricted to users with voice or higher._
 
 **Control commands**  
 _Restricted to users with voice or higher._  
-`!toysoff` / `!toyson` - Disable/enable the toys  
-`!chatteroff` / `!chatteron` - Disable/enable the CleverBot interface.  
-`!searchoff` / `!searchon` - Disable/enable search commands.  
-`!dctvoff` / `!dctvon` - Disable/enable diamondclub.tv commands.  
-`!lockdown` / `!lockdownoff` - Disable/enable all commands in case of emergency.  
+`!turn [toys|chatter|search|dctv|all] [on|off]` - Turns the specified set of commands on or off  
 
 # Installation
 ```bash
