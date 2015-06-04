@@ -11,7 +11,7 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!schedule [v]` - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v flag to have it show in main chat.  
 
 _Restricted to users with voice or higher._  
-`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off`.
+`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off`.  
 `!setjoin [on|off|<message>]` - Turns on/off or sets a user notice for channel join  
 
 **Search commands**  
