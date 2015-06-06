@@ -2,6 +2,7 @@
 
 module Plugins
   module DCTV
+
     class Watcher
       def initialize(bot)
         @bot = bot
