@@ -21,7 +21,7 @@ module Plugins
       word = CGI.unescape_html(document.css(".word").first.content.strip)
       definition = CGI.unescape_html(document.css(".meaning").first.content.strip)
       example = CGI.unescape_html(document.css(".example").first.content.strip)
-      "#{word}: #{definition} - #{url}\nExample: \"#{example}\""
+      "#{word}: #{definition} - #{url}\nExample: #{example}"
     rescue
       "No results found - #{url}"
     end
