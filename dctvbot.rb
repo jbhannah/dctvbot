@@ -19,6 +19,7 @@ require_relative 'helpers/bot_helpers'
 require_relative 'plugins/command_control'
 require_relative 'plugins/google'
 require_relative 'plugins/help'
+require_relative 'plugins/urban_dict'
 require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
 require_relative 'plugins/dctv/join_message.rb'
@@ -65,6 +66,7 @@ bot = Cinch::Bot.new do
       Plugins::CommandControl,
       Plugins::Google,
       Plugins::Help,
+      Plugins::UrbanDict,
       Plugins::Wikipedia,
       Plugins::Wolfram,
       Plugins::DCTV::JoinMessage,
