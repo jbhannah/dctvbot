@@ -27,7 +27,12 @@ module Plugins
             live = Format(:white, :red, " LIVE ")
             Channel(@bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink} "))
             @bot.announced << id
-            @bot.official_live = true if stream["Channel"] = "1"
+            if stream["Channel"] = "1"
+              @bot.official_live = true
+              topic = "LIVE: #{stream["StreamName"]} #{channelLink} | "
+              topic += Channel(@bot.channels[0]).topic.split("|").shift.join("|")
+              Channel(@bot.channels[0]).topic = topic
+            end
           elsif stream["Channel"] == "0" && @bot.announced.include?(id)
             @bot.announced.delete(id)
           end
