@@ -26,7 +26,7 @@ module Plugins
       link = URI.unescape $1
       "#{title}\n#{link}"
     rescue
-      "No results found"
+      "Error finding top result or no results found - #{url}"
     end
   end
 
