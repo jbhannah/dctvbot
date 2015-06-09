@@ -7,9 +7,9 @@ module Plugins
     include Cinch::Plugin
     include Cinch::Extensions::Authentication
 
-    set :help, '!wikipedia <term> - Searches wikipedia for <term>'
+    set :help, '!wikipedia <term> - Searches Wikipedia for <term>'
 
-    match /wiki(?:pedia)? (.*)/i
+    match /wiki(?:pedia)? (.+)/i
 
     def initialize(*args)
       super
