@@ -9,7 +9,9 @@ bot:
   channels:
     - "#chat"
 plugins:
-  wolfram:
+  google:
     api: api-key
   pastebin:
+    api: api-key
+  wolfram:
     api: api-key

@@ -17,7 +17,7 @@ require_relative 'helpers/bot_helpers'
 # Plugins
 # require_relative 'plugins/clevererbot'
 require_relative 'plugins/command_control'
-require_relative 'plugins/google'
+require_relative 'plugins/google_it'
 require_relative 'plugins/help'
 require_relative 'plugins/urban_dict'
 require_relative 'plugins/wikipedia'
@@ -64,7 +64,7 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Identify,
       # Plugins::ClevererBot,
       Plugins::CommandControl,
-      Plugins::Google,
+      Plugins::GoogleIt,
       Plugins::Help,
       Plugins::UrbanDict,
       Plugins::Wikipedia,
@@ -82,6 +82,7 @@ bot = Cinch::Bot.new do
 
     c.plugins.options = {
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
+      Plugins::GoogleIt => { google_api_key: config['plugins']['google']['api'] },
       Plugins::Wikipedia => { max_length: 300 },
       Plugins::Wolfram => { wolfram_api_key: config['plugins']['wolfram']['api'] },
       Plugins::DCTV::SecondScreen => { pastebin_api_key: config['plugins']['pastebin']['api'] }
