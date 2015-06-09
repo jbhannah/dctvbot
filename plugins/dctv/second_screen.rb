@@ -12,7 +12,7 @@ module Plugins
       match /secs (.+)/
 
       def execute(m, input)
-        if input =~ URI::regexp || input == "on" || input == "off" || input == "clear"
+        if input =~ /^http/ || input == "on" || input == "off" || input == "clear"
           response = HTTParty.get("http://diamondclub.tv/api/secondscreen.php?url=#{input}&pro=4938827&user=#{m.user.nick}")
           m.user.notice "Command Sent. Response: #{response}"
         else
