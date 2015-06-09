@@ -113,13 +113,5 @@ bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true
 bot.recorded_second_screen_list = Array.new
 
-results = dctvApiJson
-results.each do |result|
-  bot.official_live = true if result["Channel"] == "1"
-  unless result["Channel"] == "0"
-    bot.announced << Integer(result["StreamID"])
-  end
-end
-
 Thread.new { Plugins::DCTV::Watcher.new(bot).start }
 bot.start
