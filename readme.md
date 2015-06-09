@@ -3,7 +3,7 @@
 A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/cinch)  
 
 # Commands
-`!help` - Prints available commands and their descriptions. Responds though private message.
+`!help` - Prints available commands and their descriptions. Responds though private message.  
 
 **diamondclub.tv commands**  
 `!now` - Display channels that are currently live via user notice.  
@@ -11,13 +11,14 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!schedule [v]` - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v flag to have it show in main chat.  
 
 _Restricted to users with voice or higher._  
-`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off`.  
+`!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off` commands.  
 `!setjoin [on|off|<message>]` - Turns on/off or sets a user notice for channel join  
 
 **Search commands**  
-`!google <term>` - Returns the top hit on google for `<term>`.  
-`!wikipedia <term>` - Searches wikipedia for `<term>`.  
+`!google <term>` - Returns the top hit on Google for `<term>`.  
+`!wiki <term>` - Searches Wikipedia for `<term>`.  
 `!wolfram <query>` - Attempts to answer your `<query>` using Wolfram Alpha.  
+`!urban <term>` - Returns result of Urban Dictionary search for `<term>`.  
 
 **Control commands**  
 _Restricted to users with voice or higher._  
