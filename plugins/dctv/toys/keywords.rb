@@ -14,10 +14,14 @@ module Plugins
           m.reply Format(:bold, :white, :red, ' BBBBBOOOOOIIILLLED!! ')
         end
 
-        match /pre[\-\s]?show\?/i, group: :toys, use_prefix: false, method: :preshow
+        match /pre[\-\s]?show[\?!\.]?/i, group: :toys, use_prefix: false, method: :preshow
         def preshow(m)
           return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'No.', true
+          if m.user.nick == "Beef"
+            m.reply "DAMMIT BEEF!"
+          else
+            m.reply 'No.', true
+          end
         end
 
         match /you ready\?/i, group: :toys, use_prefix: false, method: :ready
