@@ -6,30 +6,34 @@ module Plugins
     include Cinch::Plugin
     include Cinch::Extensions::Authentication
 
-    set :help, '!google <term> - Returns top hit on google when searching for <term>'
+    set :help, '!google [mode] <term> - Returns top hit on google when searching for <term>. Optional [mode] can be one of blog, book, image, local, news, patent, or video.'
 
-    match /google (.+)/
+    match /google (\w+)\s?(.*)/
 
-    def execute(m, query)
+    def execute(m, mode, query)
       return unless (@bot.search_enabled || authenticated?(m))
-      search = Google::Search::Web.new(:query => query, :api_key => config[:google_api_key])
+      query = "#{mode} #{query}" unless ["blog", "book", "image", "local", "news", "patent", "video"].include?(mode)
+      case mode
+      when "blog"
+        search = Google::Search::Blog.new(:query => query, :api_key => config[:google_api_key])
+      when "book"
+        search = Google::Search::Book.new(:query => query, :api_key => config[:google_api_key])
+      when "image"
+        search = Google::Search::Image.new(:query => query, :api_key => config[:google_api_key])
+      when "local"
+        search = Google::Search::Local.new(:query => query, :api_key => config[:google_api_key])
+      when "news"
+        search = Google::Search::News.new(:query => query, :api_key => config[:google_api_key])
+      when "patent"
+        search = Google::Search::Patent.new(:query => query, :api_key => config[:google_api_key])
+      when "video"
+        search = Google::Search::Video.new(:query => query, :api_key => config[:google_api_key])
+      else
+        search = Google::Search::Web.new(:query => query, :api_key => config[:google_api_key])
+      end
       result = search.all_items.first
-      m.reply "#{result.title}\n#{result.uri}"
+      m.reply "#{CGI.unescape_html(result.title)}\n#{result.uri}"
     end
-
-    # def search(query)
-    #   url = "http://www.google.com/search?q=#{CGI.escape(query)}"
-    #   document = Nokogiri::HTML(open(url), nil, 'utf-8')
-    #
-    #   title = document.at_css('h3.r a').content.strip
-    #   link = document.at_css('h3.r a')[:href]
-    #   link =~ /^\/url\?q=(.+)&sa=.+/i
-    #   title = CGI.unescape_html title
-    #   link = URI.unescape $1
-    #   "#{title}\n#{link}"
-    # rescue
-    #   "Error finding top result or no results found - #{url}"
-    # end
   end
 
 end
