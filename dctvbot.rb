@@ -15,7 +15,7 @@ require_relative 'helpers/data_helpers'
 require_relative 'helpers/bot_helpers'
 
 # Plugins
-require_relative 'plugins/clevererbot'
+# require_relative 'plugins/clevererbot'
 require_relative 'plugins/command_control'
 require_relative 'plugins/google'
 require_relative 'plugins/help'
@@ -61,7 +61,7 @@ bot = Cinch::Bot.new do
 
     c.plugins.plugins = [
       Cinch::Plugins::Identify,
-      Plugins::ClevererBot,
+      # Plugins::ClevererBot,
       Plugins::CommandControl,
       Plugins::Google,
       Plugins::Help,
