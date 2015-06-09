@@ -39,7 +39,7 @@ module Plugins
           m.user.notice "Assembling Pastebin. Result: #{result.body}"
           @bot.recorded_second_screen_list.clear
         else
-          @bot.recorded_second_screen_list << input
+          @bot.recorded_second_screen_list << input unless input == "clear"
         end
       end
     end
