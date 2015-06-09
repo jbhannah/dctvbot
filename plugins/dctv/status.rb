@@ -10,24 +10,31 @@ module Plugins
       include Helpers::BotHelpers
 
       set :help, <<-HELP
-!now - Display channels that are currently live.
+!now [v] - Display channels that are currently live. Voiced and higher users can specify the v option to have it show in main chat.
 !next - Display next scheduled show and estimated time until it starts.
-!schedule - Display scheduled shows for the next 48 hours.
+!schedule [v] - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v option to have it show in main chat.
 HELP
 
-      match /now/, method: :now
-      def now(m)
+      match /now\s?(v?)/, method: :now
+      def now(m, flag=nil)
         return unless (@bot.dctv_commands_enabled || authenticated?(m))
         apiResult = dctvApiJson
         onCount = 0
+        output = ""
         apiResult.each do |result|
           unless result["Channel"] == "0"
-            m.user.notice "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}"
+            output += "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}\n"
             onCount += 1
           end
         end
         if onCount == 0
-          m.user.notice "Nothing is currently live"
+          output = "Nothing is currently live"
+        end
+
+        if flag == "v" && authenticated?(m)
+          m.reply output
+        else
+          m.user.notice output
         end
       end
 
@@ -42,7 +49,6 @@ HELP
         end
         title = CGI.unescape_html entry["title"]
         m.reply "Next scheduled show: #{title} (#{timeUntil(entry["time"])})"
-
       end
 
       match /schedule\s?(v?)/, method: :schedule

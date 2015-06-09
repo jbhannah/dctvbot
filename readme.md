@@ -6,8 +6,8 @@ A simple IRC bot for chatrealm, built using [Cinch](https://github.com/cinchrb/c
 `!help` - Prints available commands and their descriptions. Responds though private message.  
 
 **diamondclub.tv commands**  
-`!now` - Display channels that are currently live via user notice.  
 `!next` - Display next scheduled show and estimated time until it starts.  
+`!now [v]` - Display channels that are currently live via user notice. Voiced and higher users can specify the `v` option to have it show in main chat.  
 `!schedule [v]` - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the `v` option to have it show in main chat.  
 
 _Restricted to users with voice or higher._  
