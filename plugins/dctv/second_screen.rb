@@ -12,8 +12,12 @@ module Plugins
       match /secs (.+)/
 
       def execute(m, input)
-        response = HTTParty.get("http://diamondclub.tv/api/secondscreen.php?url=#{input}&pro=4938827&user=#{m.user.nick}")
-        m.user.notice "Command Sent. Response: #{response}"
+        if input =~ URI::regexp || input == "on" || input == "off" || input == "clear"
+          response = HTTParty.get("http://diamondclub.tv/api/secondscreen.php?url=#{input}&pro=4938827&user=#{m.user.nick}")
+          m.user.notice "Command Sent. Response: #{response}"
+        else
+          m.user.notice "Adding line \"#{input}\" to pastebin"
+        end
 
         if input == "on"
           @bot.recorded_second_screen_list.clear
