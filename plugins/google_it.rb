@@ -12,6 +12,10 @@ module Plugins
 
     def execute(m, mode, query)
       return unless (@bot.search_enabled || authenticated?(m))
+      if query.nil? || query.empty?
+        query = mode
+        mode = nil
+      end
       query = "#{mode} #{query}" unless ["blog", "book", "image", "local", "news", "patent", "video"].include?(mode)
       case mode
       when "blog"
