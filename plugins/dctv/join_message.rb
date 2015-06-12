@@ -24,11 +24,22 @@ module Plugins
       def execute(m, input)
         return unless authenticated?(m)
         if input == "off"
-          @do_msg = false
-          m.user.notice "Join message is now off"
+          if @do_msg
+            @do_msg = false
+            m.user.notice "Join message is now off"
+          else
+            m.user.notice "Join message is already off"
+          end
         elsif input == "on"
-          @do_msg = true
-          m.user.notice "Join message is now on"
+          if @do_msg
+            m.user.notice "Join message is already on"
+          else
+            @do_msg = true
+            m.user.notice "Join message is now on"
+          end
+        elsif input == "status"
+          on_off = @do_msg ? "on" : "off"
+          m.user.notice "Join message is #{on_off} and set to \"#{@current_join_msg}\""
         else
           @current_join_msg = input
           m.user.notice "Join message has been changed to: #{@current_join_msg}"
