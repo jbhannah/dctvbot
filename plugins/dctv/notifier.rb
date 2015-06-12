@@ -17,7 +17,7 @@ module Plugins
             official_check = true if status["Channel"] == "1"
           end
           @bot.official_live = official_check
-          update_topic("<> |") unless @bot.official_live
+          update_topic("<>") unless @bot.official_live
         end
         return if @bot.official_live
         statuses.each do |stream|
