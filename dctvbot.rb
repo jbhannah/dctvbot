@@ -22,6 +22,7 @@ require_relative 'plugins/help'
 require_relative 'plugins/urban_dict'
 require_relative 'plugins/wikipedia'
 require_relative 'plugins/wolfram'
+require_relative 'plugins/youtube_link_info'
 require_relative 'plugins/dctv/join_message'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/pester_jennie'
@@ -69,6 +70,7 @@ bot = Cinch::Bot.new do
       Plugins::UrbanDict,
       Plugins::Wikipedia,
       Plugins::Wolfram,
+      Plugins::YoutubeLinkInfo,
       Plugins::DCTV::JoinMessage,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::PesterJennie,
