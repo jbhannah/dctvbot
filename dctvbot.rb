@@ -17,11 +17,7 @@ require_relative 'helpers/bot_helpers'
 # Plugins
 # require_relative 'plugins/clevererbot'
 require_relative 'plugins/command_control'
-require_relative 'plugins/google_it'
 require_relative 'plugins/help'
-require_relative 'plugins/urban_dict'
-require_relative 'plugins/wikipedia'
-require_relative 'plugins/wolfram'
 require_relative 'plugins/youtube_link_info'
 require_relative 'plugins/dctv/join_message'
 require_relative 'plugins/dctv/notifier'
@@ -65,11 +61,7 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Identify,
       # Plugins::ClevererBot,
       Plugins::CommandControl,
-      Plugins::GoogleIt,
       Plugins::Help,
-      Plugins::UrbanDict,
-      Plugins::Wikipedia,
-      Plugins::Wolfram,
       Plugins::YoutubeLinkInfo,
       Plugins::DCTV::JoinMessage,
       Plugins::DCTV::Notifier,
@@ -84,9 +76,6 @@ bot = Cinch::Bot.new do
 
     c.plugins.options = {
       Cinch::Plugins::Identify => { type: :nickserv, password: config['bot']['password'] },
-      Plugins::GoogleIt => { google_api_key: config['plugins']['google']['api'] },
-      Plugins::Wikipedia => { max_length: 300 },
-      Plugins::Wolfram => { wolfram_api_key: config['plugins']['wolfram']['api'] },
       Plugins::DCTV::SecondScreen => { pastebin_api_key: config['plugins']['pastebin']['api'] }
     }
   end
@@ -104,14 +93,12 @@ end
 
 class << bot
   attr_accessor :announced, :official_live, :toys_enabled, :cleverbot_enabled,
-                :search_enabled, :dctv_commands_enabled, :all_commands_enabled,
-                :recorded_second_screen_list
+                :dctv_commands_enabled, :all_commands_enabled, :recorded_second_screen_list
 end
 bot.announced = Array.new
 bot.official_live = false
 bot.toys_enabled = true
 bot.cleverbot_enabled = true
-bot.search_enabled = true
 bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true
 bot.recorded_second_screen_list = Array.new

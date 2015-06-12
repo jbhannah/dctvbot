@@ -14,11 +14,6 @@ _Restricted to users with voice or higher._
 `!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off` commands.  
 `!setjoin [on|off|status|<message>]` - Turns on/off, displays status of, or sets a user notice when they join the channel  
 
-**Search commands**  
-`!google [mode] <term>` - Returns top hit on google when searching for `<term>`. Optional `[mode]` can be one of blog, book, image, local, news, patent, or video.  
-`!wiki <term>` - Searches Wikipedia for `<term>`.  
-`!wolfram <query>` - Attempts to answer your `<query>` using Wolfram Alpha.  
-`!urban <term>` - Returns result of Urban Dictionary search for `<term>`.  
 
 **Control commands**  
 _Restricted to users with voice or higher._  

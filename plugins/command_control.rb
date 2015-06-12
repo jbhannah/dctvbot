@@ -26,14 +26,11 @@ module Plugins
         @bot.toys_enabled = toggle_command_set(m, "Toy commands", @bot.toys_enabled)
       when "cleverbot", "chatter"
         @bot.cleverbot_enabled = toggle_command_set(m, "Cleverbot interfaces", @bot.cleverbot_enabled)
-      when "search"
-        @bot.search_enabled = toggle_command_set(m, "Search commands", @bot.search_enabled)
       when "dctv"
         @bot.dctv_commands_enabled = toggle_command_set(m, "DCTV commands", @bot.dctv_commands_enabled)
       when "all"
         @bot.toys_enabled = toggle_command_set(m, "Toy commands", @bot.toys_enabled)
         @bot.cleverbot_enabled = toggle_command_set(m, "Cleverbot interfaces", @bot.cleverbot_enabled)
-        @bot.search_enabled = toggle_command_set(m, "Search commands", @bot.search_enabled)
         @bot.dctv_commands_enabled = toggle_command_set(m, "DCTV commands", @bot.dctv_commands_enabled)
       else
         failed = true
