@@ -9,7 +9,7 @@ module Plugins
 
       def initialize(*args)
         super
-        @current_join_msg = "We welcome everyone here in chatrealm and ask that any TWiT drama stay in the #drama room"
+        @current_join_msg = "Welcome to Chatrealm!"
         @do_msg = false
       end
 
