@@ -18,7 +18,6 @@ require_relative 'helpers/bot_helpers'
 # require_relative 'plugins/clevererbot'
 require_relative 'plugins/command_control'
 require_relative 'plugins/help'
-require_relative 'plugins/youtube_link_info'
 require_relative 'plugins/dctv/join_message'
 require_relative 'plugins/dctv/notifier'
 require_relative 'plugins/dctv/pester_jennie'
@@ -27,7 +26,6 @@ require_relative 'plugins/dctv/status'
 require_relative 'plugins/dctv/toys/flip'
 require_relative 'plugins/dctv/toys/keywords'
 require_relative 'plugins/dctv/toys/mitch_hedberg'
-require_relative 'plugins/dctv/toys/tumbleweed'
 
 # Other classes
 require_relative 'plugins/dctv/watcher'
@@ -62,7 +60,6 @@ bot = Cinch::Bot.new do
       # Plugins::ClevererBot,
       Plugins::CommandControl,
       Plugins::Help,
-      Plugins::YoutubeLinkInfo,
       Plugins::DCTV::JoinMessage,
       Plugins::DCTV::Notifier,
       Plugins::DCTV::PesterJennie,
@@ -70,8 +67,7 @@ bot = Cinch::Bot.new do
       Plugins::DCTV::Status,
       Plugins::DCTV::Toys::Flip,
       Plugins::DCTV::Toys::Keywords,
-      Plugins::DCTV::Toys::MitchHedberg,
-      Plugins::DCTV::Toys::Tumbleweed
+      Plugins::DCTV::Toys::MitchHedberg
     ]
 
     c.plugins.options = {

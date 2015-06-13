@@ -41,24 +41,6 @@ module Plugins
           return unless (@bot.toys_enabled || authenticated?(m))
           m.reply 'oooOOOOoooOOooo'
         end
-
-        match /.+\.pizza/i, group: :toys, use_prefix: false, method: :pizza
-        def pizza(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'PIZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-        end
-
-        match /inconceivable/i, group: :toys, use_prefix: false, method: :inconceivable
-        def inconceivable(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'You keep using that word. I do not think it means what you think it means.'
-        end
-
-        match /inigo montoya/i, group: :toys, use_prefix: false, method: :inigomontoya
-        def inigomontoya(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
-          m.reply 'Hello. My name is Inigo Montoya. You killed my father. Prepare to die.'
-        end
       end
 
     end
