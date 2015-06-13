@@ -3,11 +3,6 @@
 require 'bundler/setup'
 Bundler.require
 
-require 'cgi'
-require 'net/http'
-require 'open-uri'
-require 'rexml/document'
-require 'set'
 require 'yaml'
 
 # Helpers
@@ -29,13 +24,6 @@ require_relative 'plugins/dctv/toys/mitch_hedberg'
 
 # Other classes
 require_relative 'plugins/dctv/watcher'
-
-# Include helpers
-include Helpers::DataHelpers
-include Helpers::BotHelpers
-
-# Other includes
-include REXML
 
 bot = Cinch::Bot.new do
   configure do |c|

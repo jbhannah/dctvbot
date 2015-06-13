@@ -1,8 +1,12 @@
 # encoding: utf-8
 
+require 'rexml/document'
+
 module Helpers
 
   module DataHelpers
+    include REXML
+
     def dctvApiJson
       # Returns parsed JSON from dctv api info
       url = "http://diamondclub.tv/api/status.php"
