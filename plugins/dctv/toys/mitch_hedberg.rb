@@ -11,6 +11,7 @@ module Plugins
         match /hedberg/, group: :toys
 
         def execute(m)
+          return unless @bot.toys_enabled
           url = "http://www.buzzfeed.com/mrloganrhoades/a-complete-ranking-of-almost-every-single-mitch-hedberg-joke"
           document = Nokogiri::HTML(open(url), nil, 'utf-8')
           potential_quotes = document.css('.buzz_superlist_item_wide p')

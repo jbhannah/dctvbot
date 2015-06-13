@@ -10,13 +10,13 @@ module Plugins
 
         match /#boiled/, group: :toys, use_prefix: false, method: :boiled
         def boiled(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           m.reply Format(:bold, :white, :red, ' BBBBBOOOOOIIILLLED!! ')
         end
 
         match /pre[\-\s]?show[\?!\.]?/i, group: :toys, use_prefix: false, method: :preshow
         def preshow(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           if m.user.nick == "Beef"
             m.reply "DAMMIT BEEF!"
           else
@@ -32,13 +32,13 @@ module Plugins
 
         match /pa{3,}nts/i, group: :toys, use_prefix: false, method: :pants
         def pants(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           m.reply 'skirr'
         end
 
         match /anthony carboni/i, group: :toys, use_prefix: false, method: :carboni
         def carboni(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           m.reply 'oooOOOOoooOOooo'
         end
       end

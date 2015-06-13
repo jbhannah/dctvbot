@@ -10,7 +10,7 @@ module Plugins
 
         match /flip\s?(.*)/, group: :toys, method: :flip
         def flip(m, word=nil)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           if word == nil || word.blank? || word =~ /table/i
             word = "┻━┻"
           else
