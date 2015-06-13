@@ -24,7 +24,7 @@ module Plugins
       case group
       when "toys"
         @bot.toys_enabled = toggle_command_set(m, "Toy commands", @bot.toys_enabled)
-      when "cleverbot", "chatter"
+      when "cleverbot", "chatter", "personality"
         @bot.cleverbot_enabled = toggle_command_set(m, "Cleverbot interfaces", @bot.cleverbot_enabled)
       when "dctv"
         @bot.dctv_commands_enabled = toggle_command_set(m, "DCTV commands", @bot.dctv_commands_enabled)
