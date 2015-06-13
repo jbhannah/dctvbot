@@ -14,25 +14,6 @@ _Restricted to users with voice or higher._
 `!secs [on|off|clear|<url>]` - Executes Second Screen command or sets to `<url>`. Automatically generates a pastebin of links sent to the second screen between `on` and `off` commands.  
 `!setjoin [on|off|status|<message>]` - Turns on/off, displays status of, or sets a user notice when they join the channel  
 
-
 **Control commands**  
 _Restricted to users with voice or higher._  
-`!turn [toys|chatter|search|dctv|all] [on|off]` - Turns the specified set of commands on or off  
-
-# Installation
-```bash
-git clone https://github.com/tinnvec/dctvbot.git
-cd dctvbot/
-bundle install
-```
-
-# Configuration
-```bash
-cp config.sample.yml config.yml
-```
-Then edit `config.yml` and fill in with desired details. If you want bot to identify itself, you must first register the nick manually with the server.  
-
-# Usage
-```bash
-ruby dctvbot.rb
-```
+`!turn [toys|chatter|search|dctv|all] [on|off]` - Turns the specified set of commands on or off
