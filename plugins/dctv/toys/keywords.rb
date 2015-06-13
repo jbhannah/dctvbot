@@ -6,7 +6,6 @@ module Plugins
 
       class Keywords
         include Cinch::Plugin
-        include Cinch::Extensions::Authentication
 
         match /#boiled/, group: :toys, use_prefix: false, method: :boiled
         def boiled(m)
@@ -26,7 +25,7 @@ module Plugins
 
         match /you ready\?/i, group: :toys, use_prefix: false, method: :ready
         def ready(m)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           m.reply 'I was ' + Format(:bold, 'BORN') + ' ready!'
         end
 

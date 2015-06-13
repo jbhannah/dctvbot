@@ -6,7 +6,6 @@ module Plugins
 
       class Flip
         include Cinch::Plugin
-        include Cinch::Extensions::Authentication
 
         match /flip\s?(.*)/, group: :toys, method: :flip
         def flip(m, word=nil)
@@ -21,7 +20,7 @@ module Plugins
 
         match /unflip\s?(.*)/, group: :toys, method: :unflip
         def unflip(m, word=nil)
-          return unless (@bot.toys_enabled || authenticated?(m))
+          return unless @bot.toys_enabled
           if word == nil || word.blank? || word =~ /table/i
             word = "┬───┬"
           else
