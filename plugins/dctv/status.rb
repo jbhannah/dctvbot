@@ -15,7 +15,7 @@ module Plugins
 !schedule [v] - Display scheduled shows for the next 48 hours via user notice. Voiced and higher users can specify the v option to have it show in main chat.
 HELP
 
-      match /now\s?(v?)/, method: :now
+      match /now\s?\-{0,2}(v?)(?:erbose)?/, method: :now
       def now(m, flag=nil)
         return unless (@bot.dctv_commands_enabled || authenticated?(m))
         apiResult = dctvApiJson
@@ -51,7 +51,7 @@ HELP
         m.reply "Next scheduled show: #{title} (#{timeUntil(entry["time"])})"
       end
 
-      match /schedule\s?(v?)/, method: :schedule
+      match /schedule\s?\-{0,2}(v?)(?:erbose)?/, method: :schedule
       def schedule(m, flag=nil)
         return unless (@bot.dctv_commands_enabled || authenticated?(m))
         entries = getCalendarEntries
