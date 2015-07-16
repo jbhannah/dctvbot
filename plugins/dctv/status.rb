@@ -23,7 +23,7 @@ HELP
         output = ""
         apiResult.each do |result|
           unless result["Channel"] == "0"
-            output += "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://diamondclub.tv/##{result["Channel"]}\n"
+            output += "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://dctv.link/#{result["Channel"]}\n"
             onCount += 1
           end
         end
