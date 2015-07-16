@@ -9,6 +9,17 @@ module Plugins
 
       listen_to :checkdctv
 
+      def initialize(*args)
+        super
+        results = dctvApiJson
+        results.each do |result|
+          @bot.official_live = true if result["Channel"] == "1"
+          unless result["Channel"] == "0"
+            @bot.announced << Integer(result["StreamID"])
+          end
+        end
+      end
+
       def listen(m)
         statuses = dctvApiJson
         if @bot.official_live
