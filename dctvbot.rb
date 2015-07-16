@@ -81,7 +81,7 @@ class << bot
 end
 bot.announced = Array.new
 bot.official_live = false
-bot.toys_enabled = false
+bot.toys_enabled = true
 bot.cleverbot_enabled = true
 bot.dctv_commands_enabled = true
 bot.all_commands_enabled = true
