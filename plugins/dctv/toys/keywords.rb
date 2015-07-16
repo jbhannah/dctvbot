@@ -13,7 +13,7 @@ module Plugins
           m.reply Format(:bold, :white, :red, ' BBBBBOOOOOIIILLLED!! ')
         end
 
-        match /pre[\-\s]?show[\?!\.]?/i, group: :toys, use_prefix: false, method: :preshow
+        match /(?=^pre[\-\s]?show[\?!\.]?)|(?=pre[\-\s]?show[\?!\.]?$)/i, group: :toys, use_prefix: false, method: :preshow
         def preshow(m)
           return unless @bot.toys_enabled
           if m.user.nick == "Beef"
