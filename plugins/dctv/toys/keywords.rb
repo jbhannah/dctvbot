@@ -40,6 +40,12 @@ module Plugins
           return unless @bot.toys_enabled
           m.reply 'oooOOOOoooOOooo'
         end
+
+        match /^what\?$/i, group: :toys, use_prefix: false, method: :whcthbd
+        def whcthbd(m)
+          return unless @bot.toys_enabled
+          m.reply 'How could this have been done?!'
+        end
       end
 
     end
