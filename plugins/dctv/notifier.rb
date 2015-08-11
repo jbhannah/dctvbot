@@ -11,39 +11,47 @@ module Plugins
 
       def initialize(*args)
         super
-        results = dctvApiJson
+        response = Net::HTTP.get_response(URI.parse('http://diamondclub.tv/api/channelsv2.php'))
+        results = JSON.parse(response.body)['assignedchannels']
         results.each do |result|
-          @bot.official_live = true if result["Channel"] == "1"
-          unless result["Channel"] == "0"
-            @bot.announced << Integer(result["StreamID"])
+          @bot.official_live = true if !result['yt_upcoming'] && result['channel'] == 1
+          unless result['nowonline'] == "no"
+            @bot.announced << Integer(result['streamid'])
           end
         end
       end
 
       def listen(m)
-        statuses = dctvApiJson
+        response = Net::HTTP.get_response(URI.parse('http://diamondclub.tv/api/channelsv2.php'))
+        statuses = JSON.parse(response.body)['assignedchannels']
         if @bot.official_live
           official_check = false
           statuses.each do |status|
-            official_check = true if status["Channel"] == "1"
+            official_check = true if !result['yt_upcoming'] && status['channel'] == 1
           end
           @bot.official_live = official_check
           update_topic("<>") unless @bot.official_live
         end
         return if @bot.official_live
         statuses.each do |stream|
-          id = Integer(stream["StreamID"])
-          if stream["Channel"] != "0" && stream["Alerts"] == "true" && !@bot.announced.include?(id)
-            channel = stream["Channel"]
+          id = Integer(stream['streamid'])
+          if !stream['yt_upcoming'] && stream['alerts'] && !@bot.announced.include?(id)
+            channel = stream['channel']
             channelLink = "http://dctv.link/#{channel}"
             live = Format(:white, :red, " LIVE ")
-            Channel(@bot.channels[0]).send(Format(:bold, "#{stream["StreamName"]} is #{live} on Channel #{channel} - #{channelLink} "))
+            msg = "#{stream['friendlyalias']}"
+            msg += " [#{stream['twitch_yt_description']}]" unless stream['twitch_yt_description'].blank?
+            msg += " is #{live} on Channel #{stream['channel']} - #{stream['urltoplayer']} "
+            Channel(@bot.channels[0]).send(Format(:bold, msg))
             @bot.announced << id
-            if stream["Channel"] == "1"
+            if stream['channel'] == 1
               @bot.official_live = true
-              update_topic("LIVE: #{stream["StreamName"]} #{channelLink}")
+              topic = "LIVE: #{stream['friendlyalias']}"
+              topic += " - #{stream['twitch_yt_description']}" unless stream['twitch_yt_description'].blank?
+              topic += " - #{stream['urltoplayer']}"
+              update_topic(topic)
             end
-          elsif stream["Channel"] == "0" && @bot.announced.include?(id)
+          elsif !stream['yt_upcoming'] && !stream['nowonline'] && @bot.announced.include?(id)
             @bot.announced.delete(id)
           end
         end

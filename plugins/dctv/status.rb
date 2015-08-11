@@ -18,12 +18,13 @@ HELP
       match /now\s?\-{0,2}(v?)(?:erbose)?/, method: :now
       def now(m, flag=nil)
         return unless (@bot.dctv_commands_enabled || authenticated?(m))
-        apiResult = dctvApiJson
+        response = Net::HTTP.get_response(URI.parse('http://diamondclub.tv/api/channelsv2.php'))
+        apiResult = JSON.parse(response.body)['assignedchannels']
         onCount = 0
         output = ""
         apiResult.each do |result|
-          unless result["Channel"] == "0"
-            output += "#{result["StreamName"]} is live on Channel #{result["Channel"]} - http://dctv.link/#{result["Channel"]}\n"
+          unless result['yt_upcoming']
+            output += "#{result['friendlyalias']} is live on Channel #{result['channel']} - #{result['urltoplayer']}\n"
             onCount += 1
           end
         end
