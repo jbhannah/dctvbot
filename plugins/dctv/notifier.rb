@@ -27,7 +27,7 @@ module Plugins
         if @bot.official_live
           official_check = false
           statuses.each do |status|
-            official_check = true if !result['yt_upcoming'] && status['channel'] == 1
+            official_check = true if !status['yt_upcoming'] && status['channel'] == 1
           end
           @bot.official_live = official_check
           update_topic("<>") unless @bot.official_live
